@@ -661,11 +661,40 @@ function QuizView({ onClose, onComplete }: { onClose: () => void; onComplete: ()
 
 /* ─── Main Page ─────────────────────────────────────────── */
 export default function CourseSuggestionsPage() {
+  const [isLoading, setIsLoading] = useState(true);
   const [showResults, setShowResults] = useState(false);
   const [showQuiz, setShowQuiz] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
-  const router = useRouter();
+  const [streamsData, setStreamsData] = useState(STREAMS);
 
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('/api/course-suggestions');
+
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+        const data = await response.json();
+
+        const updatedStreams = STREAMS.map((stream) => ({
+          ...stream,
+          courses: data[stream.id]?.map((course: any) => ({
+            name: course.id.toUpperCase(),
+            sub: course.name
+          })) || stream.courses
+        }));
+
+        setStreamsData(updatedStreams);
+      } catch (error) {
+        console.error("Error updating course UI:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchCourses();
+  }, []);
   if (showQuiz) {
     return (
       <div className="space-y-5">
@@ -764,15 +793,36 @@ export default function CourseSuggestionsPage() {
             </button>
           ))}
         </div>
-        {activeTab === 0 && (
-          <button
-            className="flex items-center gap-2 px-4 py-2.5 rounded-2xl text-sm font-semibold text-slate-600 transition-all hover:shadow-md"
-            style={glassWhite}
-          >
-            Interests: Science, Technology <ChevronDown className="w-4 h-4 text-slate-400" />
-          </button>
-        )}
+        <button
+          className="flex items-center gap-2 px-4 py-2.5 rounded-2xl text-sm font-semibold text-slate-600 transition-all hover:shadow-md"
+          style={glassWhite}
+        >
+          Interests: Science, Technology <ChevronDown className="w-4 h-4 text-slate-400" />
+        </button>
       </div>
+
+      {/* Stream cards */}
+      {isLoading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {[1, 2, 3].map(i => (
+            <div key={i} className="rounded-3xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.92)' }}>
+              <div className="p-5 space-y-4">
+                <div className="h-8 rounded bg-slate-200 animate-pulse" />
+                <div className="space-y-3">
+                  {[1, 2, 3, 4].map(j => (
+                    <div key={j} className="h-16 rounded bg-slate-100 animate-pulse" />
+                  ))}
+                </div>
+                <div className="h-10 rounded-2xl bg-slate-200 animate-pulse" />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {streamsData.map(s => <StreamCard key={s.id} stream={s} />)}
+        </div>
+      )}
 
       {/* Tab Content */}
       {activeTab === 0 && (
