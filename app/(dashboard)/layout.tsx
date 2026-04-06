@@ -1,15 +1,17 @@
 'use client';
 
-import { GraduationCap, Briefcase, Building2, Gift, Search, Bell, ChevronRight, BookOpen, ClipboardList, LayoutDashboard, Sparkles, FileText, Headphones, User } from 'lucide-react';
+import { GraduationCap, Briefcase, Building2, Gift, Search, Bell, ChevronRight, BookOpen, ClipboardList, LayoutDashboard, Sparkles, FileText, Headphones, User, TrendingUp, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-
+  
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
   { name: 'Career Quiz', href: '/career-quiz', icon: ClipboardList },
   { name: 'Course Suggestions', href: '/course-suggestions', icon: GraduationCap },
   { name: 'Career Paths', href: '/career-paths', icon: Briefcase },
+  { name: 'Commerce Careers', href: '/commerce', icon: TrendingUp },
+  { name: 'Explore Career Paths', href: '/explore-career-paths', icon: MapPin },
   { name: 'College Directory', href: '/college-directory', icon: Building2 },
   { name: 'Scholarships', href: '/scholarships', icon: Gift },
 ];
@@ -74,17 +76,17 @@ export default function DashboardLayout({
         {/* Minimal Help card */}
         <div className="relative rounded-2xl p-4 overflow-hidden group bg-gradient-to-br from-indigo-50/50 to-blue-50/50 border border-white/60 hover:shadow-sm transition-all duration-300">
           <div className="absolute -right-4 -top-4 w-16 h-16 bg-blue-100/50 rounded-full blur-xl group-hover:bg-blue-200/50 transition-colors" />
-          
+
           <div className="flex items-center gap-3 mb-3 relative z-10">
             <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-indigo-600 group-hover:scale-105 group-hover:text-blue-600 transition-all">
               <Headphones className="w-5 h-5" />
             </div>
             <div>
               <h3 className="font-bold text-slate-800 text-sm">Need help?</h3>
-              <p className="text-[11px] text-slate-500 font-medium">We're here for you</p>
+              <p className="text-[11px] text-slate-500 font-medium">We&apos;re here for you</p>
             </div>
           </div>
-          
+
           <button className="w-full relative z-10 bg-white hover:bg-slate-50 text-indigo-600 border border-indigo-100 rounded-xl py-2 text-xs font-bold transition-all shadow-sm hover:shadow group/btn overflow-hidden">
             <span className="relative z-10 flex items-center justify-center gap-1.5">
               Contact Support
@@ -116,7 +118,7 @@ export default function DashboardLayout({
               <Bell className="w-4 h-4 text-slate-500" />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full ring-1 ring-white" />
             </button>
-            
+
             {/* Mobile Profile Avatar Button */}
             <Link href="/edit-profile" className="lg:hidden w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 shadow-sm ring-2 ring-white hover:bg-slate-200 transition-colors">
               <User className="w-4 h-4" />
@@ -148,10 +150,10 @@ export default function DashboardLayout({
                     </div>
                   </div>
                 </div>
-                
+
                 <h3 className="text-center font-bold text-slate-800 text-lg group-hover:text-indigo-700 transition-colors">Stella Walton</h3>
                 <p className="text-center text-xs text-slate-500 mb-4 font-medium uppercase tracking-wider">Class 12 Student</p>
-                
+
                 {/* Progress */}
                 <div className="bg-slate-50/80 rounded-2xl p-3 mb-5 border border-slate-100">
                   <div className="flex items-center justify-between mb-2">
@@ -170,7 +172,7 @@ export default function DashboardLayout({
                     </div>
                   </div>
                 </div>
-                
+
                 <Link href="/edit-profile" className="block w-full text-center bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white rounded-xl py-3 text-sm font-bold transition-all duration-300 shadow-md shadow-indigo-200 hover:shadow-lg hover:shadow-indigo-300 transform hover:-translate-y-0.5 relative overflow-hidden group/btn">
                   <span className="relative z-10">Edit Profile</span>
                   <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:animate-[shimmer_1.5s_infinite]"></div>

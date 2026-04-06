@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { supabase } from '@/lib/supabase';
 import {
   Search, MapPin, Star, ArrowRight, ChevronDown,
   GraduationCap, Sparkles, Trophy, BookOpen, Users,
@@ -92,15 +93,15 @@ const SAMPLE_SCHOLARSHIPS: Scholarship[] = [
 
 /* ─── Tag styles ─────────────────────────────────────────── */
 const TAG_MAP: Record<string, { bg: string; text: string }> = {
-  'Merit-Based':  { bg: '#EFF6FF', text: '#2563EB' },
-  'Need-Based':   { bg: '#ECFDF5', text: '#059669' },
-  'Female Only':  { bg: '#FDF2F8', text: '#DB2777' },
-  'Science':      { bg: '#F0F9FF', text: '#0284C7' },
-  'B.Sc':         { bg: '#F5F3FF', text: '#7C3AED' },
-  'All Streams':  { bg: '#F0FDFA', text: '#0D9488' },
-  'Rajasthan':    { bg: '#FFFBEB', text: '#D97706' },
-  'Jaipur':       { bg: '#FFF1F2', text: '#E11D48' },
-  'India':        { bg: '#FFF7ED', text: '#EA580C' },
+  'Merit-Based': { bg: '#EFF6FF', text: '#2563EB' },
+  'Need-Based': { bg: '#ECFDF5', text: '#059669' },
+  'Female Only': { bg: '#FDF2F8', text: '#DB2777' },
+  'Science': { bg: '#F0F9FF', text: '#0284C7' },
+  'B.Sc': { bg: '#F5F3FF', text: '#7C3AED' },
+  'All Streams': { bg: '#F0FDFA', text: '#0D9488' },
+  'Rajasthan': { bg: '#FFFBEB', text: '#D97706' },
+  'Jaipur': { bg: '#FFF1F2', text: '#E11D48' },
+  'India': { bg: '#FFF7ED', text: '#EA580C' },
 };
 
 function Tag({ label }: { label: string }) {
@@ -118,10 +119,10 @@ function Tag({ label }: { label: string }) {
 /* ─── Stats bar ──────────────────────────────────────────── */
 function StatsBar({ total }: { total: number }) {
   const stats = [
-    { icon: Award,      label: 'Total Scholarships', value: total || '7+',   color: '#4F6FD8' },
-    { icon: IndianRupee,label: 'Max Award',           value: '₹1,00,000',     color: '#7C3AED' },
-    { icon: Users,      label: 'Students Benefited',  value: '2,400+',        color: '#059669' },
-    { icon: TrendingUp, label: 'Success Rate',         value: '94%',           color: '#F97316' },
+    { icon: Award, label: 'Total Scholarships', value: total || '7+', color: '#4F6FD8' },
+    { icon: IndianRupee, label: 'Max Award', value: '₹1,00,000', color: '#7C3AED' },
+    { icon: Users, label: 'Students Benefited', value: '2,400+', color: '#059669' },
+    { icon: TrendingUp, label: 'Success Rate', value: '94%', color: '#F97316' },
   ];
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
@@ -245,10 +246,10 @@ function FeaturedCard({ s }: { s: Scholarship }) {
 const CARD_ACCENTS = [
   { bar: 'linear-gradient(135deg,#4F6FD8,#7B96E8)', glow: 'rgba(79,111,216,0.15)' },
   { bar: 'linear-gradient(135deg,#7C3AED,#A78BFA)', glow: 'rgba(124,58,237,0.15)' },
-  { bar: 'linear-gradient(135deg,#059669,#34D399)', glow: 'rgba(5,150,105,0.15)'  },
+  { bar: 'linear-gradient(135deg,#059669,#34D399)', glow: 'rgba(5,150,105,0.15)' },
   { bar: 'linear-gradient(135deg,#DB2777,#F472B6)', glow: 'rgba(219,39,119,0.15)' },
-  { bar: 'linear-gradient(135deg,#D97706,#FCD34D)', glow: 'rgba(217,119,6,0.15)'  },
-  { bar: 'linear-gradient(135deg,#0284C7,#38BDF8)', glow: 'rgba(2,132,199,0.15)'  },
+  { bar: 'linear-gradient(135deg,#D97706,#FCD34D)', glow: 'rgba(217,119,6,0.15)' },
+  { bar: 'linear-gradient(135deg,#0284C7,#38BDF8)', glow: 'rgba(2,132,199,0.15)' },
 ];
 
 function ScholarCard({ s, idx }: { s: Scholarship; idx: number }) {
@@ -322,11 +323,11 @@ function ScholarCard({ s, idx }: { s: Scholarship; idx: number }) {
 
 /* ─── Category quick filters ─────────────────────────────── */
 const CATEGORIES = [
-  { label: 'All',          icon: Sparkles,      color: '#4F6FD8' },
-  { label: 'Merit-Based',  icon: Trophy,        color: '#2563EB' },
-  { label: 'Need-Based',   icon: Users,         color: '#059669' },
-  { label: 'Female Only',  icon: Star,          color: '#DB2777' },
-  { label: 'Science',      icon: BookOpen,      color: '#0284C7' },
+  { label: 'All', icon: Sparkles, color: '#4F6FD8' },
+  { label: 'Merit-Based', icon: Trophy, color: '#2563EB' },
+  { label: 'Need-Based', icon: Users, color: '#059669' },
+  { label: 'Female Only', icon: Star, color: '#DB2777' },
+  { label: 'Science', icon: BookOpen, color: '#0284C7' },
 ];
 
 /* ─── Page ───────────────────────────────────────────────── */
@@ -338,18 +339,18 @@ export default function ScholarshipsPage() {
   const [type, setType] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
 
-  // useEffect(() => { loadScholarships(); }, []);
+  useEffect(() => { loadScholarships(); }, []);
 
-  // async function loadScholarships() {
-  //   try {
-  //     const { data } = await supabase
-  //       .from('scholarships')
-  //       .select('*')
-  //       .order('is_featured', { ascending: false });
-  //     if (data && data.length > 0) setDbScholarships(data);
-  //   } catch (_) {}
-  //   setLoading(false);
-  // }
+  async function loadScholarships() {
+    try {
+      const { data } = await supabase
+        .from('scholarships')
+        .select('*')
+        .order('is_featured', { ascending: false });
+      if (data && data.length > 0) setDbScholarships(data);
+    } catch (_) { }
+    setLoading(false);
+  }
 
   // Use DB data if available, otherwise show samples
   const allData = dbScholarships.length > 0 ? dbScholarships : SAMPLE_SCHOLARSHIPS;
@@ -483,16 +484,16 @@ export default function ScholarshipsPage() {
             style={
               activeCategory === cat.label
                 ? {
-                    background: `linear-gradient(135deg,${cat.color}22,${cat.color}33)`,
-                    color: cat.color,
-                    border: `1.5px solid ${cat.color}55`,
-                    boxShadow: `0 2px 8px ${cat.color}22`,
-                  }
+                  background: `linear-gradient(135deg,${cat.color}22,${cat.color}33)`,
+                  color: cat.color,
+                  border: `1.5px solid ${cat.color}55`,
+                  boxShadow: `0 2px 8px ${cat.color}22`,
+                }
                 : {
-                    background: 'white',
-                    color: '#64748B',
-                    border: '1.5px solid #E8EDF5',
-                  }
+                  background: 'white',
+                  color: '#64748B',
+                  border: '1.5px solid #E8EDF5',
+                }
             }
           >
             <cat.icon size={12} />
@@ -555,7 +556,7 @@ export default function ScholarshipsPage() {
               <Sparkles size={22} className="text-white" />
             </div>
             <div>
-              <p className="text-white font-extrabold text-base">Can't find the right scholarship?</p>
+              <p className="text-white font-extrabold text-base">Can&apos;t find the right scholarship?</p>
               <p className="text-white/75 text-xs mt-0.5">Let us match you with scholarships based on your profile</p>
             </div>
           </div>

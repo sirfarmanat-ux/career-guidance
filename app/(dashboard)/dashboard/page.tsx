@@ -305,11 +305,11 @@ export default function DashboardPage() {
             <h2 className="text-lg font-bold text-slate-800">Explore Career Paths</h2>
             <p className="text-xs text-slate-400 mt-0.5">Government colleges &amp; job opportunities</p>
           </div>
-          <button className="flex items-center gap-2 text-sm text-slate-500 border border-slate-200 bg-white/60 rounded-xl px-4 py-2 hover:bg-white/80 transition-colors font-medium">
+          <Link href="/explore-career-paths" className="flex items-center gap-2 text-sm text-slate-500 border border-slate-200 bg-white/60 rounded-xl px-4 py-2 hover:bg-white/80 transition-colors font-medium">
             <Building2 className="w-4 h-4" />
             Explore paths
             <ChevronRight className="w-4 h-4" />
-          </button>
+          </Link>
         </div>
 
         <div className="bg-white/60 backdrop-blur-sm rounded-3xl border border-white/80 p-6">
@@ -343,9 +343,10 @@ export default function DashboardPage() {
 
               <div className="flex-1 space-y-3">
                 {path.jobs.map((job, i) => (
-                  <div
+                  <Link
                     key={i}
-                    className="flex items-center gap-4 bg-slate-50/80 hover:bg-white rounded-2xl p-3.5 border border-slate-100 hover:border-slate-200 transition-all group cursor-pointer"
+                    href={`/explore-${job.title.toLowerCase().replace(/\s+/g, '-')}`}
+                    className="flex items-center gap-4 bg-slate-50/80 hover:bg-white rounded-2xl p-3.5 border border-slate-100 hover:border-slate-200 transition-all group cursor-pointer block"
                   >
                     <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-slate-200 to-slate-100 flex items-center justify-center flex-shrink-0">
                       <Briefcase className="w-4 h-4 text-slate-500" />
@@ -361,7 +362,7 @@ export default function DashboardPage() {
                       <span className="text-xs font-medium">Explore</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
