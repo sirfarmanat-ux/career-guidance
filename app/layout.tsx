@@ -1,5 +1,4 @@
 import './globals.css';
-import '@/lib/mongo'
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 

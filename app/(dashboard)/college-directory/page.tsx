@@ -7,6 +7,7 @@ import {
   ChevronDown, Dumbbell, Coffee, Search, ArrowRight,
   Building2, Users, TrendingUp, Award,
 } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
@@ -31,12 +32,12 @@ interface Course {
 
 /* ─── Fallback data ──────────────────────────────────────── */
 const FALLBACK_COLLEGES: College[] = [
-  { id: '1', name: 'Maharaja College',            location: 'Station Rd, Jaipur',    city: 'Jaipur', state: 'Rajasthan', distance_km: 2.5, college_type: 'Government', facilities: ['Hostel', 'Lab', 'Library'],         image_url: '' },
-  { id: '2', name: 'Government Commerce College', location: 'MI Road, Jaipur',        city: 'Jaipur', state: 'Rajasthan', distance_km: 1.0, college_type: 'Government', facilities: ['Library', 'Internet', 'Cafeteria'],  image_url: '' },
-  { id: '3', name: 'Government Maharani College', location: 'Chaura Rasta, Jaipur',   city: 'Jaipur', state: 'Rajasthan', distance_km: 2.5, college_type: 'Government', facilities: ['Hostel', 'Lab', 'Sports'],           image_url: '' },
-  { id: '4', name: 'Shri K.B. Commerce College',  location: 'Tonk Road, Jaipur',      city: 'Jaipur', state: 'Rajasthan', distance_km: 2.6, college_type: 'Government', facilities: ['Library', 'Lab', 'Canteen'],         image_url: '' },
-  { id: '5', name: 'Rajasthan University',         location: 'JLN Marg, Jaipur',       city: 'Jaipur', state: 'Rajasthan', distance_km: 3.1, college_type: 'Government', facilities: ['Hostel', 'Research', 'Sports'],      image_url: '' },
-  { id: '6', name: 'Shri K4. Commerce College',   location: 'Vaishali Nagar, Jaipur', city: 'Jaipur', state: 'Rajasthan', distance_km: 2.6, college_type: 'Government', facilities: ['Library', 'Lab', 'Internet'],        image_url: '' },
+  { id: '1', name: 'Maharaja College', location: 'Station Rd, Jaipur', city: 'Jaipur', state: 'Rajasthan', distance_km: 2.5, college_type: 'Government', facilities: ['Hostel', 'Lab', 'Library'], image_url: '' },
+  { id: '2', name: 'Government Commerce College', location: 'MI Road, Jaipur', city: 'Jaipur', state: 'Rajasthan', distance_km: 1.0, college_type: 'Government', facilities: ['Library', 'Internet', 'Cafeteria'], image_url: '' },
+  { id: '3', name: 'Government Maharani College', location: 'Chaura Rasta, Jaipur', city: 'Jaipur', state: 'Rajasthan', distance_km: 2.5, college_type: 'Government', facilities: ['Hostel', 'Lab', 'Sports'], image_url: '' },
+  { id: '4', name: 'Shri K.B. Commerce College', location: 'Tonk Road, Jaipur', city: 'Jaipur', state: 'Rajasthan', distance_km: 2.6, college_type: 'Government', facilities: ['Library', 'Lab', 'Canteen'], image_url: '' },
+  { id: '5', name: 'Rajasthan University', location: 'JLN Marg, Jaipur', city: 'Jaipur', state: 'Rajasthan', distance_km: 3.1, college_type: 'Government', facilities: ['Hostel', 'Research', 'Sports'], image_url: '' },
+  { id: '6', name: 'Shri K4. Commerce College', location: 'Vaishali Nagar, Jaipur', city: 'Jaipur', state: 'Rajasthan', distance_km: 2.6, college_type: 'Government', facilities: ['Library', 'Lab', 'Internet'], image_url: '' },
 ];
 
 const FALLBACK_COURSES: Record<string, Course[]> = {
@@ -56,9 +57,9 @@ const FACILITY_ICONS: Record<string, React.ElementType> = {
 };
 
 const STREAM_CFG: Record<string, { gradient: string; light: string; text: string; label: string }> = {
-  Science:    { gradient: 'linear-gradient(135deg,#3B82F6,#6366F1)', light: '#EEF2FF', text: '#4F46E5', label: 'Science' },
-  Commerce:   { gradient: 'linear-gradient(135deg,#F97316,#EF4444)', light: '#FFF7ED', text: '#C2410C', label: 'Commerce' },
-  Arts:       { gradient: 'linear-gradient(135deg,#8B5CF6,#EC4899)', light: '#FDF4FF', text: '#7C3AED', label: 'Arts' },
+  Science: { gradient: 'linear-gradient(135deg,#3B82F6,#6366F1)', light: '#EEF2FF', text: '#4F46E5', label: 'Science' },
+  Commerce: { gradient: 'linear-gradient(135deg,#F97316,#EF4444)', light: '#FFF7ED', text: '#C2410C', label: 'Commerce' },
+  Arts: { gradient: 'linear-gradient(135deg,#8B5CF6,#EC4899)', light: '#FDF4FF', text: '#7C3AED', label: 'Arts' },
   Vocational: { gradient: 'linear-gradient(135deg,#10B981,#059669)', light: '#ECFDF5', text: '#065F46', label: 'Vocational' },
 };
 
@@ -85,17 +86,17 @@ function CollegeIllustration({ index }: { index: number }) {
       {/* left wing */}
       <rect x="8" y="48" width="36" height="52" rx="2" fill={p.wall} />
       <polygon points="8,48 44,48 26,32" fill={p.roof} />
-      {[0,1].map(r => [0,1].map(c => (
-        <rect key={`lw${r}${c}`} x={13+c*16} y={55+r*18} width="10" height="12" rx="1" fill={p.win} opacity="0.9" />
+      {[0, 1].map(r => [0, 1].map(c => (
+        <rect key={`lw${r}${c}`} x={13 + c * 16} y={55 + r * 18} width="10" height="12" rx="1" fill={p.win} opacity="0.9" />
       )))}
       {/* main building */}
       <rect x="72" y="28" width="136" height="72" rx="3" fill={p.wall} />
       <polygon points="64,28 216,28 140,4" fill={p.roof} />
-      {[0,1,2,3,4].map(i => (
-        <rect key={`col${i}`} x={80+i*23} y={28} width="5" height="72" rx="1" fill="white" opacity="0.22" />
+      {[0, 1, 2, 3, 4].map(i => (
+        <rect key={`col${i}`} x={80 + i * 23} y={28} width="5" height="72" rx="1" fill="white" opacity="0.22" />
       ))}
-      {[0,1].map(r => [0,1,2,3].map(c => (
-        <rect key={`mw${r}${c}`} x={80+c*26} y={38+r*26} width="16" height="18" rx="1.5" fill={p.win} opacity="0.85" />
+      {[0, 1].map(r => [0, 1, 2, 3].map(c => (
+        <rect key={`mw${r}${c}`} x={80 + c * 26} y={38 + r * 26} width="16" height="18" rx="1.5" fill={p.win} opacity="0.85" />
       )))}
       <rect x="122" y="72" width="36" height="28" rx="2" fill={p.door} opacity="0.7" />
       <rect x="130" y="78" width="8" height="14" rx="1" fill={p.win} opacity="0.8" />
@@ -103,8 +104,8 @@ function CollegeIllustration({ index }: { index: number }) {
       {/* right wing */}
       <rect x="236" y="52" width="36" height="48" rx="2" fill={p.wall} />
       <polygon points="236,52 272,52 254,36" fill={p.roof} />
-      {[0,1].map(r => [0,1].map(c => (
-        <rect key={`rw${r}${c}`} x={241+c*16} y={58+r*18} width="10" height="12" rx="1" fill={p.win} opacity="0.9" />
+      {[0, 1].map(r => [0, 1].map(c => (
+        <rect key={`rw${r}${c}`} x={241 + c * 16} y={58 + r * 18} width="10" height="12" rx="1" fill={p.win} opacity="0.9" />
       )))}
       {/* trees */}
       <ellipse cx="58" cy="82" rx="10" ry="14" fill="#4ADE80" opacity="0.55" />
@@ -233,26 +234,26 @@ function CollegeCard({
 
 /* ─── Main Page ──────────────────────────────────────────── */
 export default function CollegeDirectoryPage() {
-  const [colleges, setColleges]         = useState<College[]>(FALLBACK_COLLEGES);
-  const [courses, setCourses]           = useState<Record<string, Course[]>>(FALLBACK_COURSES);
-  const [shortlisted, setShortlisted]   = useState<Set<string>>(new Set());
-  const [search, setSearch]             = useState('');
+  const [colleges, setColleges] = useState<College[]>(FALLBACK_COLLEGES);
+  const [courses, setCourses] = useState<Record<string, Course[]>>(FALLBACK_COURSES);
+  const [shortlisted, setShortlisted] = useState<Set<string>>(new Set());
+  const [search, setSearch] = useState('');
   const [activeStream, setActiveStream] = useState<string | null>(null);
 
   useEffect(() => {
-    // (async () => {
-    //   try {
-    //     const { data: cd, error } = await supabase.from('colleges').select('*').order('distance_km');
-    //     if (error || !cd?.length) return;
-    //     const results = await Promise.all(
-    //       cd.map((c: College) => supabase.from('courses').select('degree_name,stream,cutoff_percentage').eq('college_id', c.id))
-    //     );
-    //     const map: Record<string, Course[]> = {};
-    //     cd.forEach((c: College, i: number) => { map[c.id] = results[i].data ?? []; });
-    //     setColleges(cd);
-    //     setCourses(map);
-    //   } catch { /* keep fallback */ }
-    // })();
+    (async () => {
+      try {
+        const { data: cd, error } = await supabase.from('colleges').select('*').order('distance_km');
+        if (error || !cd?.length) return;
+        const results = await Promise.all(
+          cd.map((c: College) => supabase.from('courses').select('degree_name,stream,cutoff_percentage').eq('college_id', c.id))
+        );
+        const map: Record<string, Course[]> = {};
+        cd.forEach((c: College, i: number) => { map[c.id] = results[i].data ?? []; });
+        setColleges(cd);
+        setCourses(map);
+      } catch { /* keep fallback */ }
+    })();
   }, []);
 
   const toggleShortlist = (id: string) =>
@@ -273,10 +274,10 @@ export default function CollegeDirectoryPage() {
   const streams = ['Science', 'Arts', 'Commerce', 'Vocational'];
 
   const stats = [
-    { icon: Building2, label: 'Colleges',     value: colleges.length, color: '#6366F1', bg: '#EEF2FF' },
-    { icon: GraduationCap, label: 'Courses',  value: Object.values(courses).flat().length, color: '#8B5CF6', bg: '#F5F3FF' },
-    { icon: Users, label: 'Students',         value: '12K+', color: '#06B6D4', bg: '#ECFEFF' },
-    { icon: Award, label: 'Gov. Colleges',    value: colleges.filter(c => c.college_type === 'Government').length, color: '#F59E0B', bg: '#FFFBEB' },
+    { icon: Building2, label: 'Colleges', value: colleges.length, color: '#6366F1', bg: '#EEF2FF' },
+    { icon: GraduationCap, label: 'Courses', value: Object.values(courses).flat().length, color: '#8B5CF6', bg: '#F5F3FF' },
+    { icon: Users, label: 'Students', value: '12K+', color: '#06B6D4', bg: '#ECFEFF' },
+    { icon: Award, label: 'Gov. Colleges', value: colleges.filter(c => c.college_type === 'Government').length, color: '#F59E0B', bg: '#FFFBEB' },
   ];
 
   return (
@@ -579,7 +580,7 @@ export default function CollegeDirectoryPage() {
                   className="flex items-center gap-1.5 text-[11.5px] font-semibold px-3 py-1.5 rounded-full transition-colors"
                   style={{ background: '#FFF1F2', color: '#E11D48', border: '1.5px solid #FFE4E6' }}
                 >
-                  "{search}"
+                  &quot;{search}&quot;
                   <X className="w-2.5 h-2.5" />
                 </button>
               )}

@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import { supabase } from '@/lib/supabase';
 import {
   Code, Database, Bot, Globe, Gamepad2, Shield,
   FlaskConical, Palette, TrendingUp, Wrench,
@@ -8,6 +9,7 @@ import {
   Microscope, Calculator, Music, Landmark, Briefcase,
   HeartPulse, Cpu, PenTool,
 } from 'lucide-react';
+import Router, { useRouter } from 'next/router';
 
 export const dynamic = 'force-dynamic';
 
@@ -174,8 +176,9 @@ function CareerIllustration({ title, gradient }: { title: string; gradient: stri
 }
 
 /* ─── Career Card ────────────────────────────────────────── */
-function CareerCard({ career, gradient, index }: { career: CareerPath; gradient: string; index: number }) {
+function CareerCard({ career, gradient, index, selectedStream }: { career: CareerPath; gradient: string; index: number; selectedStream: string }) {
   const [shortlisted, setShortlisted] = useState(false);
+  const router = useRouter();
   const Icon = ICON_MAP[career.title] || Code;
 
   return (
@@ -254,7 +257,8 @@ function CareerCard({ career, gradient, index }: { career: CareerPath; gradient:
 
         {/* CTA */}
         <button
-          className="mt-auto w-full py-2.5 rounded-2xl text-white text-xs font-bold flex items-center justify-center gap-2 transition-all hover:opacity-90 active:scale-95"
+          onClick={() => router.push(`/career-paths/${selectedStream.toLowerCase()}/${career.id}`)}
+          className="mt-auto w-full py-2.5 rounded-2xl text-white text-xs font-bold flex items-center justify-center gap-2 transition-all hover:opacity-90 active:scale-95 cursor-pointer"
           style={{ background: gradient, boxShadow: `0 4px 14px rgba(0,0,0,0.15)` }}
         >
           View Career Roadmap <ArrowRight className="w-3.5 h-3.5" />
@@ -270,6 +274,7 @@ export default function CareerPathsPage() {
   const [selectedStream, setSelectedStream] = useState('Science');
   const [selectedDegree, setSelectedDegree] = useState('');
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setSelectedDegree(DEGREES[selectedStream][0]);
@@ -279,20 +284,20 @@ export default function CareerPathsPage() {
     loadCareerPaths();
   }, [selectedStream]);
 
-  async function loadCareerPaths() {
-    // setLoading(true);
-    // try {
-    //   const { data } = await supabase
-    //     .from('career_paths')
-    //     .select('*')
-    //     .eq('stream', selectedStream);
-    //   setCareerPaths(data && data.length > 0 ? data : FALLBACK[selectedStream]);
-    // } catch {
-    //   setCareerPaths(FALLBACK[selectedStream]);
-    // } finally {
-    //   setLoading(false);
-    // }
-  }
+  const loadCareerPaths = useCallback(async () => {
+    setLoading(true);
+    try {
+      const { data } = await supabase
+        .from('career_paths')
+        .select('*')
+        .eq('stream', selectedStream);
+      setCareerPaths(data && data.length > 0 ? data : FALLBACK[selectedStream]);
+    } catch {
+      setCareerPaths(FALLBACK[selectedStream]);
+    } finally {
+      setLoading(false);
+    }
+  }, [selectedStream]);
 
   const meta = STREAM_META[selectedStream];
   const StreamIcon = STREAM_ICONS[selectedStream];
@@ -321,7 +326,7 @@ export default function CareerPathsPage() {
             </div>
             <h1 className="text-3xl font-black text-white leading-tight mb-2">Career Paths</h1>
             <p className="text-white/80 text-sm leading-relaxed max-w-lg">
-              Explore various career options unlocked by the degree courses and streams you're interested in.
+              Explore various career options unlocked by the degree courses and streams you&apos;re interested in.
             </p>
           </div>
           <div
@@ -404,6 +409,7 @@ export default function CareerPathsPage() {
               career={career}
               gradient={meta.cardGrads[i % meta.cardGrads.length]}
               index={i}
+              selectedStream={selectedStream}
             />
           ))}
         </div>
@@ -419,6 +425,7 @@ export default function CareerPathsPage() {
           <p className="text-white/75 text-sm mt-1">Take our aptitude quiz to get AI-powered career recommendations.</p>
         </div>
         <button
+          onClick={() => router.push('/career-quiz')}
           className="flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-2xl font-bold text-sm transition-all hover:scale-105 active:scale-95"
           style={{ background: 'rgba(255,255,255,0.95)', color: meta.pill, boxShadow: '0 4px 16px rgba(0,0,0,0.15)' }}
         >
