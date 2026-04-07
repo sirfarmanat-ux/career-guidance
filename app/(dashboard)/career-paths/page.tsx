@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { supabase } from '@/lib/supabase';
 import {
   Code, Database, Bot, Globe, Gamepad2, Shield,
   FlaskConical, Palette, TrendingUp, Wrench,
@@ -285,18 +284,18 @@ export default function CareerPathsPage() {
   }, [selectedStream]);
 
   const loadCareerPaths = useCallback(async () => {
-    setLoading(true);
-    try {
-      const { data } = await supabase
-        .from('career_paths')
-        .select('*')
-        .eq('stream', selectedStream);
-      setCareerPaths(data && data.length > 0 ? data : FALLBACK[selectedStream]);
-    } catch {
-      setCareerPaths(FALLBACK[selectedStream]);
-    } finally {
-      setLoading(false);
-    }
+    // setLoading(true);
+    // try {
+    //   const { data } = await supabase
+    //     .from('career_paths')
+    //     .select('*')
+    //     .eq('stream', selectedStream);
+    //   setCareerPaths(data && data.length > 0 ? data : FALLBACK[selectedStream]);
+    // } catch {
+    //   setCareerPaths(FALLBACK[selectedStream]);
+    // } finally {
+    //   setLoading(false);
+    // }
   }, [selectedStream]);
 
   const meta = STREAM_META[selectedStream];

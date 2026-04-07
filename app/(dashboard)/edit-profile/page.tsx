@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Camera, User, Mail, BookOpen, Target, Sparkles, Building2, ChevronLeft, Calendar, Save, CheckCircle, AlertCircle, Loader2, Plus, X } from 'lucide-react';
 import Link from 'next/link';
-import { supabase } from '@/lib/supabase';
+ 
 import { useRouter } from 'next/navigation';
 
 export const dynamic = 'force-dynamic';
