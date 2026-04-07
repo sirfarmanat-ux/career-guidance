@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { MapPin, ExternalLink, GraduationCap, Star, SlidersHorizontal, X, Wifi, BookOpen, Home, Monitor, FlaskConical, ChevronDown, Search } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+ 
 import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';

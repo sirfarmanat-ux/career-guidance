@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Save, Clock, History, RotateCcw, CheckCircle, AlertCircle, Loader2, Eye, Download, Upload, Trash2, Calendar, User, Edit3 } from 'lucide-react';
 import Link from 'next/link';
-import { supabase } from '@/lib/supabase';
+ 
 import { useRouter } from 'next/navigation';
 
 export const dynamic = 'force-dynamic';

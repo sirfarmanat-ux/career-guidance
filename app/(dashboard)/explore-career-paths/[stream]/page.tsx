@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import { supabase } from '@/lib/supabase';
+ 
 import {
     Code, Database, Bot, Globe, Gamepad2, Shield,
     FlaskConical, Palette, TrendingUp,

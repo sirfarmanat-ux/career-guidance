@@ -7,7 +7,7 @@ import {
   ChevronDown, Dumbbell, Coffee, Search, ArrowRight,
   Building2, Users, TrendingUp, Award,
 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+ 
 import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
