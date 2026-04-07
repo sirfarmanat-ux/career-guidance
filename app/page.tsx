@@ -1,4 +1,3 @@
-import { SignUpButton, SignInButton } from "@clerk/nextjs";
 import { Sparkles, GraduationCap, Building2, MapPin, TrendingUp, ArrowRight } from "lucide-react";
 import Link from 'next/link';
 
@@ -18,11 +17,9 @@ export default function Home() {
           <span className="text-xl font-extrabold text-slate-800 tracking-tight">Learnthru</span>
         </div>
         <div className="flex items-center gap-4">
-          <SignInButton mode="modal">
             <button className="text-sm font-bold text-slate-700 hover:text-indigo-600 transition-colors">
               Login
             </button>
-          </SignInButton>
         </div>
       </header>
 
@@ -52,13 +49,11 @@ export default function Home() {
           
           {/* THE BIG "GET STARTED" BUTTON OPENING CLERK */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-2">
-            <SignUpButton mode="modal" fallbackRedirectUrl="/dashboard">
               <button className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-lg px-10 py-5 rounded-full overflow-hidden shadow-xl hover:shadow-indigo-500/30 hover:scale-105 transition-all duration-300">
                 <span className="relative z-10">GET STARTED</span>
                 <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
               </button>
-            </SignUpButton>
           </div>
           <p className="text-sm text-slate-500 mb-12">Click to open sign up directly on this page</p>
 
