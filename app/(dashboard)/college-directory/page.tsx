@@ -69,7 +69,7 @@ interface UICollege {
   distance_km: number;
   college_type: string;
   facilities: string[];
-  image_url: string;
+  imageUrl: string;
   accreditation?: string;
   hostel_available?: boolean;
   hostel_fee_inr?: number;
@@ -111,7 +111,7 @@ function mapCollegeToUI(c: College): { college: UICollege; courses: Course[] } {
     distance_km: 0,
     college_type: c.type,
     facilities: c.facilities ?? [],
-    image_url: getCollegeImage(c.name, c._id),
+    imageUrl: getCollegeImage(c.name, c._id),
     accreditation: c.accreditation,
     hostel_available: c.hostel_available,
     hostel_fee_inr: c.hostel_fee_inr,
@@ -197,7 +197,7 @@ function CollegeCard({
       {/* Premium Image Header */}
       <div className="relative h-[200px] w-full overflow-hidden bg-slate-100">
         <img 
-          src={college.image_url} 
+          src={college.imageUrl} 
           alt={college.name}
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
