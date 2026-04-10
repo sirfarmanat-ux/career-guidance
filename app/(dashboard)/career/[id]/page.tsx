@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { 
   ChevronLeft, Briefcase, TrendingUp, Award, Clock,
   TerminalSquare, Laptop, Lightbulb, MapPin, ExternalLink, PlayCircle, Network,
-  Zap, FlaskConical, Activity, Target, Compass
+  Zap, FlaskConical, Activity, Target, Compass, Database, Globe, Calculator
 } from 'lucide-react';
 
 /* ─── Detailed Expanded Career Data ───────────── */
@@ -13,7 +13,7 @@ const CAREER_DATA = {
   'software-developer': {
     title: 'Software Developer',
     icon: TerminalSquare,
-    grad: 'linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)',
+    grad: 'linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)',
     description: 'Software Engineers build the digital architecture that runs the modern world. You will design, develop, test, and maintain applications or systems. From mapping the logistics of rideshare apps to deploying AI models on cloud endpoints.',
     timeline: '4 Years (B.Tech / B.Sc in Computer Science)',
     startingSalary: '₹6.0L - ₹15.0L Base',
@@ -37,7 +37,7 @@ const CAREER_DATA = {
   'financial-analyst': {
     title: 'Financial Analyst',
     icon: TrendingUp,
-    grad: 'linear-gradient(135deg, #1f4037 0%, #99f2c8 100%)',
+    grad: 'linear-gradient(135deg, #38bdf8 0%, #2dd4bf 100%)',
     description: 'Financial Analysts study market trends, demographics, and microeconomic factors to help companies make smart investment decisions. You evaluate capital structures and analyze historical financial performance.',
     timeline: '3-5 Years (B.Com / CA / MBA)',
     startingSalary: '₹5.5L - ₹9.0L Base',
@@ -61,7 +61,7 @@ const CAREER_DATA = {
   'counsellor': {
     title: 'Professional Counsellor',
     icon: Lightbulb,
-    grad: 'linear-gradient(135deg, #4A00E0 0%, #8E2DE2 100%)',
+    grad: 'linear-gradient(135deg, #a78bfa 0%, #f472b6 100%)',
     description: 'Counsellors assess, diagnose, and treat mental and emotional disorders. They listen deeply, prescribe structures for mental wellbeing, and help individuals navigate personal, social, and psychological traumas.',
     timeline: '3-5 Years (B.A. Psych + MA Specialization)',
     startingSalary: '₹3.5L - ₹6.0L Base',
@@ -84,7 +84,7 @@ const CAREER_DATA = {
   'mechanical-engineer': {
     title: 'Mechanical Engineer',
     icon: Zap,
-    grad: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+    grad: 'linear-gradient(135deg, #22d3ee 0%, #0284c7 100%)',
     description: 'The oldest branch of engineering. You deal with kinematics, thermodynamics, and the structural integrity of machines and engines. Mechanical engineers design almost everything that moves.',
     timeline: '4 Years (B.Tech / B.E. Mechanical)',
     startingSalary: '₹4.5L - ₹8.0L Base',
@@ -107,7 +107,7 @@ const CAREER_DATA = {
   'medical-professional': {
     title: 'Medical Professional',
     icon: Briefcase,
-    grad: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)',
+    grad: 'linear-gradient(135deg, #60a5fa 0%, #0284c7 100%)',
     description: 'Doctors, nurses, and clinical specialists who diagnose illnesses, prescribe medication, and save lives directly. It is one of the most demanding, respected, and biologically intensive careers serving as the firewall against human mortality.',
     timeline: '5-7+ Years (MBBS / Nursing / MD)',
     startingSalary: '₹8.0L - ₹15.0L Base',
@@ -130,7 +130,7 @@ const CAREER_DATA = {
   'ui-ux-designer': {
     title: 'UI/UX Designer',
     icon: Laptop,
-    grad: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+    grad: 'linear-gradient(135deg, #c084fc 0%, #f472b6 100%)',
     description: 'Designers bridge human psychology with digital interfaces. You make applications intuitive, beautiful, accessible, and highly performant. A great UX designer understands spatial layouts and human intent.',
     timeline: '3-4 Years (B.Des / BFA / Bootcamp)',
     startingSalary: '₹5.5L - ₹12.0L Base',
@@ -153,7 +153,7 @@ const CAREER_DATA = {
   'lab-technician': {
     title: 'Research Scientist / Lab Tech',
     icon: FlaskConical,
-    grad: 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
+    grad: 'linear-gradient(135deg, #a78bfa 0%, #38bdf8 100%)',
     description: 'The crucial backbone of the scientific community. Technicians operate complex machinery to conduct assays, sequence DNA, test materials, or verify the safety of public products against dangerous pathogens.',
     timeline: '3-4 Years (B.Sc / specialized Diplomas)',
     startingSalary: '₹3.5L - ₹6.0L Base',
@@ -172,6 +172,183 @@ const CAREER_DATA = {
       { name: 'CSIR India', url: 'https://www.csir.res.in/' },
       { name: 'Nature Research Journals', url: 'https://www.nature.com/' }
     ]
+  },
+  'data-scientist': {
+    title: 'Data Scientist',
+    icon: Database,
+    grad: 'linear-gradient(135deg, #60A5FA 0%, #34D399 100%)',
+    description: 'Data Scientists convert raw noise into actionable corporate strategy. Utilizing neural networks and Python libraries, they predict market conditions before they happen.',
+    timeline: '4 Years (B.Tech / B.Sc Stats)',
+    startingSalary: '₹10.0L - ₹20.0L Base',
+    growth: 'Very High (AI Boom)',
+    dayInLife: 'Cleaning huge datasets, training AI models with scikit-learn or TensorFlow, configuring big data pipelines on AWS, and presenting predictive dashboards to stakeholders.',
+    expectedDuties: ['Data modeling', 'Statistical analysis', 'Dashboard creation', 'Model deployment'],
+    roadmap: [
+      { year: 'Phase 1', title: 'Math & Coding', desc: 'Mastering linear algebra, statistics, and Python/R fundamentals.' },
+      { year: 'Phase 2', title: 'Machine Learning', desc: 'Implementing regression models, random forests, and deep learning neural nets.' },
+      { year: 'Phase 3', title: 'Big Data Tooling', desc: 'Learning PySpark, Hadoop, and SQL to query massive raw records.' },
+      { year: 'Phase 4', title: 'AI Leadership', desc: 'Directing AI infrastructure architecture for predictive forecasting.' }
+    ],
+    keyTools: ['Python', 'TensorFlow', 'Jupyter', 'SQL'],
+    topCompanies: ['Amazon', 'Flipkart', 'Bridgewater', 'Google'],
+    importantLinks: [
+      { name: 'Kaggle', url: 'https://www.kaggle.com/' },
+      { name: 'Towards Data Science', url: 'https://towardsdatascience.com/' }
+    ]
+  },
+  'film-director': {
+    title: 'Film / Creative Director',
+    icon: Lightbulb,
+    grad: 'linear-gradient(135deg, #F472B6 0%, #FBBF24 100%)',
+    description: 'Creative Directors synthesize massive teams of artists, editors, and actors to produce high-leverage digital content across film, television, and advertising.',
+    timeline: '3-5 Years (BA Film / Experience)',
+    startingSalary: '₹6L - ₹25L+',
+    growth: 'High (OTT Boom)',
+    dayInLife: 'Reviewing scripts, managing lighting logistics on set, commanding camera operators, and directing actors creatively down to the micro-expression.',
+    expectedDuties: ['Storyboarding', 'Team leadership', 'Cinematography checking', 'Post-production'],
+    roadmap: [
+      { year: 'Year 1-2', title: 'Fundamentals', desc: 'Learning camera angles, script writing, and video editing basics.' },
+      { year: 'Year 3', title: 'Short Films', desc: 'Producing independent short videos to build a directorial reel.' },
+      { year: 'Year 4+', title: 'Assistant Directing', desc: 'Working on major commercial sets as an AD.' },
+      { year: 'Year 6+', title: 'Lead Director', desc: 'Pitching direct to Netflix/Amazon and running large scale productions.' }
+    ],
+    keyTools: ['Final Cut Pro', 'Red/Arri Cameras', 'Storyboards', 'Lighting rigs'],
+    topCompanies: ['Netflix', 'Amazon Studios', 'Ogilvy'],
+    importantLinks: [
+      { name: 'Sundance Institute', url: 'https://www.sundance.org/' }
+    ]
+  },
+  'journalist': {
+    title: 'Investigative Journalist',
+    icon: Globe,
+    grad: 'linear-gradient(135deg, #38BDF8 0%, #A78BFA 100%)',
+    description: 'Journalists track the nervous system of modern society. They hold institutions accountable and write long-form data-backed socio-political analysis.',
+    timeline: '3 Years (BA Journalism/Mass Media)',
+    startingSalary: '₹4.0L - ₹10.0L Base',
+    growth: 'Moderate',
+    dayInLife: 'Contacting unlisted sources, sifting through public government records, verifying claims independently, and publishing high-impact news stories.',
+    expectedDuties: ['Interviewing', 'Fact-checking', 'Writing/Reporting', 'Media Broadcasting'],
+    roadmap: [
+      { year: 'Phase 1', title: 'Media Studies', desc: 'Understanding media ethics, constitutional rights, and public reporting.' },
+      { year: 'Phase 2', title: 'Local Reporting', desc: 'Writing for city desks and shadowing senior correspondents.' },
+      { year: 'Phase 3', title: 'National Desk', desc: 'Handling breaking national news or deep investigative exposes.' },
+      { year: 'Phase 4', title: 'Editor / Anchor', desc: 'Hosting public broadcasting panels or leading chief editorial operations.' }
+    ],
+    keyTools: ['Voice Recorders', 'Publishing CMS', 'Twitter/X', 'Public Data records'],
+    topCompanies: ['Reuters', 'The Hindu', 'Al Jazeera'],
+    importantLinks: [
+      { name: 'Poynter Institute', url: 'https://www.poynter.org/' }
+    ]
+  },
+  'chartered-accountant': {
+    title: 'Chartered Accountant (CA)',
+    icon: Calculator,
+    grad: 'linear-gradient(135deg, #60A5FA 0%, #2DD4BF 100%)',
+    description: 'CAs act as the absolute quantitative truth for national businesses. They manage enormous corporate tax profiles and maintain the audited backbone of the economy.',
+    timeline: '4-5 Years (ICAI Exams + Articleship)',
+    startingSalary: '₹9.0L - ₹18.0L Base',
+    growth: 'Constant',
+    dayInLife: 'Reviewing massive corporate ledgers, ensuring GST/litigation compliance, optimizing tax expenditure, and performing strict financial audits.',
+    expectedDuties: ['Financial Auditing', 'Tax filing', 'Corporate advisory', 'Risk management'],
+    roadmap: [
+      { year: 'Step 1', title: 'CA Foundation', desc: 'Clearing the heavily competitive entry-level exams.' },
+      { year: 'Step 2', title: 'CA Intermediate', desc: 'Studying advanced accounting standards and corporate laws.' },
+      { year: 'Step 3', title: 'Articleship', desc: 'Grinding 3 years of practical rigorous training under a practicing CA.' },
+      { year: 'Step 4', title: 'CA Final', desc: 'Passing the ultimate threshold to become legally certified.' }
+    ],
+    keyTools: ['Tally Prime', 'SAP ERP', 'Excel (God-level)', 'Tax portals'],
+    topCompanies: ['KPMG', 'EY', 'PwC', 'Deloitte'],
+    importantLinks: [
+      { name: 'ICAI Official', url: 'https://www.icai.org/' }
+    ]
+  },
+  'marketing-manager': {
+    title: 'Growth Marketing Lead',
+    icon: Target,
+    grad: 'linear-gradient(135deg, #F472B6 0%, #818CF8 100%)',
+    description: 'Marketers manage advertising spend across Google and Meta. They calculate Customer Acquisition Costs (CAC) to aggressively scale product revenue.',
+    timeline: '3-5 Years (BBA / MBA / Bootcamp)',
+    startingSalary: '₹7.0L - ₹16.0L Base',
+    growth: 'High',
+    dayInLife: 'A/B testing ad creatives, bidding dynamically on search keywords, parsing conversion funnels in Google Analytics, and driving massive sales metrics.',
+    expectedDuties: ['Ad Campaign Management', 'SEO/SEM', 'Brand Strategy', 'Copywriting'],
+    roadmap: [
+      { year: 'Phase 1', title: 'Digital Fundamentals', desc: 'Learning SEO parameters, Content marketing, and basic social media algorithms.' },
+      { year: 'Phase 2', title: 'Performance Ads', desc: 'Running live budgets on Meta/Google Ads and calculating ROAS.' },
+      { year: 'Phase 3', title: 'Brand Scaling', desc: 'Managing million-dollar campaign budgets for D2C/Tech startups.' },
+      { year: 'Phase 4', title: 'CMO', desc: 'Acting as Chief Marketing Officer dictating entire global brand identity.' }
+    ],
+    keyTools: ['Google Analytics', 'Meta Ads Manager', 'SEMrush', 'HubSpot'],
+    topCompanies: ['HUL', 'P&G', 'Tech Startups', 'Ogilvy'],
+    importantLinks: [
+      { name: 'HubSpot Academy', url: 'https://academy.hubspot.com/' }
+    ]
+  },
+  'electrician': {
+    title: 'Industrial Electrician',
+    icon: Zap,
+    grad: 'linear-gradient(135deg, #38BDF8 0%, #C084FC 100%)',
+    description: 'Vital for running modern smart cities. Electricians manage advanced grid distributions, solar panel installations, and internal corporate circuitry.',
+    timeline: '2-3 Years (ITI / Diplomas)',
+    startingSalary: '₹3.0L - ₹6.0L Base',
+    growth: 'Stable',
+    dayInLife: 'Wiring complex industrial breakers, reading architectural electrical schemas, testing high-voltage parameters safely, and repairing critical grid outages.',
+    expectedDuties: ['Wiring frameworks', 'Safety compliance', 'Troubleshooting grids', 'Equipment repair'],
+    roadmap: [
+      { year: 'Certification', title: 'ITI Trade', desc: 'Basic vocational mastery of circuits, AC/DC theories, and tools.' },
+      { year: 'Apprenticeship', title: 'Field Training', desc: 'Working under master electricians pulling wires in commercial sites.' },
+      { year: 'Journeyman', title: 'Independent Tech', desc: 'Handling full residential or mid-tier commercial electrical setups.' },
+      { year: 'Master Scale', title: 'Industrial Contracts', desc: 'Overseeing multi-million dollar solar farms or factory electrical grids.' }
+    ],
+    keyTools: ['Multimeters', 'Wire Strippers', 'Schematic Blueprints', 'Insulation gear'],
+    topCompanies: ['Siemens', 'NTPC', 'L&T', 'Schneider Electric'],
+    importantLinks: [
+      { name: 'Electrical Engineering Portal', url: 'https://electrical-engineering-portal.com/' }
+    ]
+  },
+  'chef': {
+    title: 'Executive Culinary Chef',
+    icon: Briefcase,
+    grad: 'linear-gradient(135deg, #FBBF24 0%, #F87171 100%)',
+    description: 'Chefs manage intense supply logistics, team dynamics under extreme pressure, and coordinate precise nutritional architecture at a massive scale.',
+    timeline: '3-4 Years (BHM / Culinary School)',
+    startingSalary: '₹4.0L - ₹12.0L Base',
+    growth: 'Stable',
+    dayInLife: 'Dictating kitchen stations in high-end hospitality, sourcing premium ingredients, architecting seasonal menus, and ensuring absolute hygiene compliance.',
+    expectedDuties: ['Menu Architecture', 'Supplier negotiation', 'Quality Control', 'Staff Management'],
+    roadmap: [
+      { year: 'Phase 1', title: 'Culinary Basics', desc: 'Knife skills, basic heating mechanics, and sauce preparations.' },
+      { year: 'Phase 2', title: 'Commis Chef', desc: 'Grinding at junior kitchen stations doing extreme repetitive prep under heat.' },
+      { year: 'Phase 3', title: 'Sous Chef', desc: 'Assisting the executive, managing the line cooks, and overseeing service pacing.' },
+      { year: 'Phase 4', title: 'Executive Head', desc: 'Running the entire restaurant logistics or expanding franchise models.' }
+    ],
+    keyTools: ['Premium Knives', 'Industrial Ovens', 'Inventory Software', 'Thermometers'],
+    topCompanies: ['Taj Group', 'Marriott', 'ITC Hotels', 'Oberoi'],
+    importantLinks: [
+      { name: 'Culinary Institute of America', url: 'https://www.ciachef.edu/' }
+    ]
+  },
+  'fashion-designer': {
+    title: 'Fashion Technologist',
+    icon: Laptop,
+    grad: 'linear-gradient(135deg, #C084FC 0%, #F472B6 100%)',
+    description: 'Fashion designers integrate fabric theory with mass production capabilities to create globally moving consumer apparel.',
+    timeline: '3-4 Years (B.Des Fashion)',
+    startingSalary: '₹5.0L - ₹14.0L Base',
+    growth: 'High',
+    dayInLife: 'Sketching apparel silhouettes digitally, sourcing exact thread textiles, predicting commercial trends, and coordinating factory prototyping loops.',
+    expectedDuties: ['Digital Sketching', 'Textile Selection', 'Trend Forecasting', 'Garment Fitting'],
+    roadmap: [
+      { year: 'Phase 1', title: 'Theory & Textiles', desc: 'Learning about fabrics, weaving mechanisms, and basic draping.' },
+      { year: 'Phase 2', title: 'Digital CAD', desc: 'Translating paper designs into digital scalable flats using Adobe Illustrator.' },
+      { year: 'Phase 3', title: 'Brand Launch / Junior', desc: 'Working under a major retail label executing seasonal production runs.' },
+      { year: 'Phase 4', title: 'Creative Director', desc: 'Showcasing independent collections globally or leading a major corporative apparel line.' }
+    ],
+    keyTools: ['Sewing Machines', 'Adobe Illustrator', 'Fabric Swatches', 'Mannequins'],
+    topCompanies: ['Myntra', 'Zara India', 'Boutique Labels', 'Reliance Brands'],
+    importantLinks: [
+      { name: 'Business of Fashion', url: 'https://www.businessoffashion.com/' }
+    ]
   }
 };
 
@@ -184,26 +361,26 @@ export default function CareerDetailPage() {
   const Icon = career.icon;
 
   return (
-    <div className="max-w-[1300px] mx-auto pb-20 space-y-8 animate-in fade-in duration-500">
-       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-         <Link href="/career-paths" className="inline-flex items-center gap-2 text-slate-500 hover:text-[#4A68C8] font-black text-[13px] uppercase tracking-widest bg-white/40 backdrop-blur-md px-5 py-2.5 rounded-xl shadow-sm transition-all hover:bg-white/60 hover:-translate-x-1 border border-white/60 w-full sm:w-auto">
+    <div className="max-w-[1200px] mx-auto pb-4 space-y-2 animate-in fade-in duration-500">
+       <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+         <Link href="/career-paths" className="inline-flex items-center justify-center gap-2 text-slate-500 hover:text-blue-600 font-bold text-[11px] uppercase tracking-widest bg-white/50 backdrop-blur-md px-3 py-1.5 rounded-lg shadow-sm transition-all hover:bg-white/80 hover:-translate-x-1 border border-white w-full sm:w-auto">
            <ChevronLeft className="w-4 h-4" /> Back to Paths
          </Link>
-         <div className="bg-emerald-50/70 backdrop-blur-md text-emerald-600 px-4 py-2 rounded-xl border border-emerald-200/50 font-bold text-sm w-full sm:w-auto text-center flex justify-center items-center gap-2 shadow-sm">
-           <Activity className="w-4 h-4" /> Actively Hiring Role
+         <div className="bg-sky-50/70 backdrop-blur-md text-cyan-600 px-3 py-1.5 rounded-lg border border-sky-200/50 font-bold text-[11px] uppercase tracking-widest w-full sm:w-auto text-center flex justify-center items-center gap-2 shadow-sm">
+           <Activity className="w-3.5 h-3.5" /> Actively Hiring Role
          </div>
        </div>
 
-       {/* HERO BANNER - Dashboard Aesthetic Replacement (SVG Objects > Emojis) */}
-       <div className="relative rounded-[2.5rem] overflow-hidden min-h-[440px] flex items-center p-8 md:p-14 shadow-2xl group border border-white/10"
+       {/* HERO BANNER - Leaner Size & Good Colors */}
+       <div className="relative rounded-[2rem] overflow-hidden min-h-[220px] flex items-center justify-center p-6 sm:p-8 shadow-xl group border border-white/10"
          style={{ background: career.grad }}>
           
-          <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'radial-gradient(circle, white 2px, transparent 2px)', backgroundSize: '28px 28px' }} />
-          <div className="absolute -top-10 -left-10 w-[500px] h-[500px] bg-white/5 rounded-full blur-3xl pointer-events-none group-hover:bg-white/10 transition-colors duration-1000" />
+          <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'radial-gradient(circle, white 2px, transparent 2px)', backgroundSize: '24px 24px' }} />
+          <div className="absolute -top-10 -left-10 w-[400px] h-[400px] bg-white/5 rounded-full blur-3xl pointer-events-none group-hover:bg-white/10 transition-colors duration-1000" />
           
           {/* Floating UI Elements matching dashboard */}
-          <div className="absolute top-1/2 right-12 -translate-y-1/2 w-80 h-80 opacity-25 pointer-events-none select-none hidden lg:block">
-            <svg viewBox="0 0 300 300" className="w-full h-full animate-[bounce_6s_ease-in-out_infinite] drop-shadow-2xl">
+          <div className="absolute top-1/2 right-4 -translate-y-1/2 w-64 h-64 opacity-20 pointer-events-none select-none hidden lg:block">
+            <svg viewBox="0 0 300 300" className="w-full h-full animate-[bounce_6s_ease-in-out_infinite] drop-shadow-lg">
               <rect x="50" y="50" width="200" height="150" rx="16" fill="white" opacity="0.1" />
               <rect x="50" y="50" width="200" height="40" rx="16" fill="white" opacity="0.15" />
               <circle cx="70" cy="70" r="5" fill="#fca5a5" />
@@ -218,17 +395,17 @@ export default function CareerDetailPage() {
             </svg>
           </div>
           
-          <div className="relative z-10 flex flex-col items-start w-full max-w-4xl gap-6">
-            <div className="w-20 h-20 md:w-24 md:h-24 rounded-[1.5rem] bg-white/10 backdrop-blur-3xl flex items-center justify-center shrink-0 border border-white/20 shadow-inner hover:scale-105 transition-transform duration-500">
-               <Icon className="w-10 h-10 md:w-12 md:h-12 text-white drop-shadow-lg" />
+          <div className="relative z-10 flex flex-col items-center text-center w-full max-w-2xl mx-auto gap-3">
+            <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white/10 backdrop-blur-2xl flex items-center justify-center shrink-0 border border-white/20 shadow-inner hover:scale-105 transition-transform duration-500">
+               <Icon className="w-7 h-7 md:w-8 md:h-8 text-white drop-shadow-md" />
             </div>
             <div>
-               <div className="bg-white/10 w-max px-4 py-2 rounded-full border border-white/20 backdrop-blur-md mb-4 flex items-center gap-2">
-                 <Briefcase className="w-4 h-4 text-amber-300" />
-                 <span className="text-white text-[10px] font-black uppercase tracking-widest drop-shadow-sm">Specific Career Profile</span>
+               <div className="bg-white/10 px-3 py-1.5 rounded-full border border-white/20 backdrop-blur-md flex items-center gap-2 mx-auto mb-2 w-max">
+                 <Briefcase className="w-3 h-3 text-cyan-300" />
+                 <span className="text-white text-[9px] font-black uppercase tracking-widest drop-shadow-sm">Specific Career Profile</span>
                </div>
-               <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-[1.1] mb-5 tracking-tight drop-shadow-sm">{career.title}</h1>
-               <p className="text-white/80 text-lg md:text-xl font-medium max-w-3xl leading-relaxed">
+               <h1 className="text-2xl md:text-4xl font-black text-white leading-tight mb-2 tracking-tight drop-shadow-md">{career.title}</h1>
+               <p className="text-white text-sm md:text-base font-medium max-w-xl mx-auto leading-relaxed drop-shadow-sm">
                  {career.description}
                </p>
             </div>
@@ -236,116 +413,56 @@ export default function CareerDetailPage() {
        </div>
 
        {/* CONTENT BLOCKS GRID */}
-       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+       <div className="w-full space-y-2">
           
-          {/* Main Description & Duties */}
-          <div className="md:col-span-2 space-y-6">
-             {/* Glassmorphic Day In Life */}
-             <div className="bg-slate-900/90 backdrop-blur-3xl rounded-3xl p-8 lg:p-12 border border-slate-700/50 shadow-xl text-white relative overflow-hidden group">
-               <div className="absolute top-0 right-0 w-32 h-32 bg-slate-800/80 rounded-bl-full -z-0 blur-md"></div>
-               <h3 className="text-2xl font-black text-white mb-6 flex items-center gap-3 relative z-10">
-                 <PlayCircle className="w-6 h-6 text-fuchsia-400" /> A Day in the Life
-               </h3>
-               <p className="text-slate-300 font-medium text-lg leading-relaxed relative z-10">
-                 "{career.dayInLife}"
-               </p>
-             </div>
+           {/* Glassmorphic Day In Life */}
+           <div className="bg-gradient-to-r from-blue-50 via-cyan-50 to-sky-100 backdrop-blur-3xl rounded-[2rem] p-5 md:p-6 border border-blue-200/50 shadow-xl text-slate-800 relative overflow-hidden group">
+             <div className="absolute top-0 right-0 w-32 h-32 bg-sky-200/50 rounded-bl-full -z-0 blur-xl"></div>
+             <h3 className="text-xl md:text-2xl font-black text-blue-900 mb-3 flex items-center justify-center sm:justify-start gap-2 relative z-10">
+               <PlayCircle className="w-5 h-5 md:w-6 md:h-6 text-blue-600" /> A Day in the Life
+             </h3>
+             <p className="text-slate-700 font-medium text-sm md:text-base leading-relaxed relative z-10 text-center sm:text-left">
+               "{career.dayInLife}"
+             </p>
+           </div>
 
-             {/* TIER 2: Expansive Roadmap Component */}
-             <div className="bg-white/50 backdrop-blur-2xl rounded-3xl p-8 lg:p-10 border border-white/60 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all">
-                <h3 className="text-2xl font-black text-slate-800 mb-2 flex items-center gap-3">
-                  <Compass className="w-6 h-6 text-indigo-500" /> Career Roadmap Strategy
-                </h3>
-                <p className="text-slate-500 font-medium text-sm mb-8">The exact structural timeline you need to reach senior mastery in this specific field.</p>
-                
-                <div className="relative border-l-4 border-indigo-200/60 ml-4 space-y-8 pb-4">
-                  {career.roadmap.map((step, i) => (
-                     <div key={i} className="relative pl-8 group">
-                        <span className="absolute -left-[14px] top-1 w-6 h-6 rounded-full bg-white border-4 border-indigo-400 group-hover:scale-125 group-hover:border-indigo-600 transition-all duration-300 shadow-sm" />
-                        <div className="bg-white/60 backdrop-blur-md border border-white/80 p-5 rounded-2xl shadow-sm hover:-translate-y-1 transition-transform">
-                           <span className="text-[10px] font-black uppercase tracking-widest text-indigo-500 mb-1 block">{step.year}</span>
-                           <h4 className="text-lg font-black text-slate-800 leading-tight mb-2">{step.title}</h4>
-                           <p className="text-slate-600 font-medium text-sm leading-relaxed">{step.desc}</p>
-                        </div>
-                     </div>
-                  ))}
-                </div>
-             </div>
-
-          </div>
-
-          {/* Lateral Sidebar */}
-          <div className="md:col-span-1 space-y-6">
-             
-             {/* Very Translucent Career Metrics Card */}
-             <div className="bg-gradient-to-br from-indigo-100/50 to-blue-50/30 backdrop-blur-xl rounded-3xl p-8 border border-white/80 shadow-md">
-               <h3 className="text-xl font-black text-indigo-950 mb-6 flex items-center gap-2">
-                 <TrendingUp className="w-5 h-5 text-indigo-600" /> Growth Metrics
-               </h3>
-               <div className="space-y-6">
-                 <div>
-                   <p className="text-[10px] uppercase font-black text-indigo-500 mb-1 tracking-wider"><Clock className="inline w-3 h-3 mr-1"/> Average Training</p>
-                   <p className="text-lg font-black text-slate-800">{career.timeline}</p>
-                 </div>
-                 <div className="w-full h-px bg-white/60" />
-                 <div>
-                   <p className="text-[10px] uppercase font-black text-indigo-500 mb-1 tracking-wider"><Award className="inline w-3 h-3 mr-1"/> Starting Compensation</p>
-                   <p className="text-2xl font-black text-emerald-600">{career.startingSalary}</p>
-                 </div>
-                 <div className="w-full h-px bg-white/60" />
-                 <div>
-                   <p className="text-[10px] uppercase font-black text-indigo-500 mb-1 tracking-wider"><Network className="inline w-3 h-3 mr-1"/> Market Projection</p>
-                   <p className="text-lg font-black text-slate-800">{career.growth}</p>
-                 </div>
-               </div>
-             </div>
-
-             {/* Top Employers Translucent */}
-             <div className="bg-white/50 backdrop-blur-xl rounded-3xl p-8 border border-white/60 shadow-sm">
-               <h3 className="text-xl font-black text-slate-800 mb-6 flex items-center gap-2">
-                 <MapPin className="w-5 h-5 text-rose-500" /> Key Employers
-               </h3>
-               <div className="flex flex-wrap gap-2">
-                 {career.topCompanies.map((comp, i) => (
-                   <span key={i} className="px-3.5 py-1.5 bg-white/80 backdrop-blur-sm text-slate-700 rounded-xl text-sm font-bold border border-white shadow-sm hover:shadow-md transition-shadow cursor-default">
-                     {comp}
-                   </span>
-                 ))}
-               </div>
-             </div>
-
-             {/* Primary Responsibilities Mini Card */}
-             <div className="bg-white/50 backdrop-blur-xl rounded-3xl p-8 border border-white/60 shadow-sm">
-               <h3 className="text-xl font-black text-slate-800 mb-5 flex items-center gap-2">
-                 <Target className="w-5 h-5 text-indigo-500" /> Base Routines
-               </h3>
-               <div className="space-y-3">
-                 {career.expectedDuties.map((duty, i) => (
-                   <div key={i} className="flex items-center gap-3">
-                     <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0"></span>
-                     <span className="font-bold text-slate-600 text-sm">{duty}</span>
+           {/* TIER 2: Expansive Roadmap Component */}
+           <div className="bg-gradient-to-br from-blue-500 to-sky-400 backdrop-blur-xl rounded-[2rem] p-5 md:p-8 border border-blue-400 shadow-xl transition-all text-center sm:text-left relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-bl-full blur-2xl"></div>
+              <h3 className="text-xl md:text-3xl font-black text-white mb-2 flex items-center justify-center sm:justify-start gap-2 relative z-10 drop-shadow-md">
+                <Compass className="w-6 h-6 md:w-8 md:h-8 text-white" /> Career Roadmap Strategy
+              </h3>
+              <p className="text-white/90 font-bold text-xs md:text-sm mb-4 text-center sm:text-left relative z-10">The exact structural timeline you need to reach senior mastery in this specific field.</p>
+              
+              <div className="relative border-l-[3px] border-white/40 sm:ml-4 ml-2 space-y-2 pb-1 text-left z-10">
+                {career.roadmap.map((step, i) => (
+                   <div key={i} className="relative pl-6 sm:pl-8 group">
+                      <span className="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-blue-600 border-[3px] border-white group-hover:scale-110 group-hover:border-white transition-all duration-300 shadow-md" />
+                      <div className="bg-white/10 backdrop-blur-md border border-white/30 p-4 rounded-xl shadow-sm hover:-translate-y-1 hover:bg-white/20 transition-all text-white">
+                         <span className="text-[10px] font-black uppercase tracking-widest text-sky-100 mb-1 block">{step.year}</span>
+                         <h4 className="text-base md:text-lg font-black text-white leading-tight mb-1 drop-shadow-sm">{step.title}</h4>
+                         <p className="text-white/90 font-medium text-xs md:text-sm leading-relaxed">{step.desc}</p>
+                      </div>
                    </div>
-                 ))}
-               </div>
-             </div>
-
-          </div>
+                ))}
+              </div>
+           </div>
 
        </div>
 
        {/* Translucent Base Knowledge Container */}
-       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-center sm:text-left mt-2">
           {/* Key Tools Array */}
-          <div className="rounded-3xl bg-white/40 backdrop-blur-2xl border border-white/60 p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-xl transition-shadow">
-             <h2 className="text-xl font-black text-slate-800 mb-2 flex items-center gap-3">
-               <Laptop className="w-6 h-6 text-[#4A68C8]" /> Daily Core Tools
+          <div className="rounded-[2rem] bg-gradient-to-br from-indigo-50 to-white/60 border border-indigo-100 p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow">
+             <h2 className="text-lg md:text-xl font-black text-indigo-950 mb-2 flex items-center justify-center sm:justify-start gap-2">
+               <Laptop className="w-5 h-5 text-indigo-600" /> Daily Core Tools
              </h2>
-             <p className="text-slate-500 font-medium mb-6 text-sm">
+             <p className="text-indigo-900/60 font-medium mb-4 text-xs md:text-sm">
                Professionals in this field consistently execute utilizing these software platforms or hardware.
              </p>
-             <div className="flex flex-wrap gap-3">
+             <div className="flex flex-wrap justify-center sm:justify-start gap-2">
                 {career.keyTools.map((tool, i) => (
-                  <span key={i} className="px-5 py-3 bg-white/60 backdrop-blur-md text-slate-800 shadow-sm border border-white/80 font-black text-[13px] rounded-xl hover:-translate-y-0.5 transition-transform cursor-default">
+                  <span key={i} className="px-3 py-1.5 bg-white text-indigo-900 shadow-sm border border-indigo-100/50 font-bold text-xs md:text-sm rounded-lg hover:-translate-y-0.5 transition-transform cursor-default">
                      {tool}
                   </span>
                 ))}
@@ -353,16 +470,16 @@ export default function CareerDetailPage() {
           </div>
 
           {/* Important Links Array */}
-          <div className="rounded-3xl bg-white/40 backdrop-blur-2xl border border-white/60 p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-xl transition-shadow">
-             <h2 className="text-xl font-black text-slate-800 mb-2 flex items-center gap-3">
-               <ExternalLink className="w-6 h-6 text-[#4A68C8]" /> Institutional Links
+          <div className="rounded-[2rem] bg-gradient-to-br from-sky-50 to-white/60 border border-sky-100 p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow">
+             <h2 className="text-lg md:text-xl font-black text-sky-950 mb-2 flex items-center justify-center sm:justify-start gap-2">
+               <ExternalLink className="w-5 h-5 text-sky-600" /> Institutional Links
              </h2>
-             <p className="text-slate-500 font-medium mb-6 text-sm">
+             <p className="text-sky-900/60 font-medium mb-4 text-xs md:text-sm">
                Official portals or global communities that govern standards for this career path.
              </p>
-             <div className="space-y-3">
+             <div className="space-y-2 text-left">
                {career.importantLinks.map((lnk, i) => (
-                 <a key={i} href={lnk.url} target="_blank" rel="noreferrer" className="flex items-center justify-between px-5 py-3.5 bg-white/50 backdrop-blur-md border border-white/80 rounded-xl font-bold text-[#4A68C8] hover:bg-indigo-600 hover:text-white hover:border-indigo-600 shadow-sm transition-all group">
+                 <a key={i} href={lnk.url} target="_blank" rel="noreferrer" className="flex items-center justify-between px-3 py-2.5 bg-white border border-sky-100/50 rounded-lg font-bold text-sky-700 hover:bg-sky-600 hover:text-white hover:border-sky-600 shadow-sm transition-all group text-xs md:text-sm">
                    {lnk.name}
                    <ExternalLink className="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-transform" />
                  </a>

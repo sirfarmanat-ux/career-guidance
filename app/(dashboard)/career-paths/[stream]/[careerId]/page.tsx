@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
  
 import {
     Code, Database, Bot, Globe, Gamepad2, Shield,
@@ -566,75 +567,68 @@ function RoadmapStep({ step, index, total }: { step: RoadmapStep; index: number;
         <div className="relative">
             {/* Timeline line */}
             {index < total - 1 && (
-                <div className="absolute left-6 top-12 w-0.5 h-full bg-gradient-to-b from-blue-400 to-blue-200 opacity-30" />
+                <div className="absolute left-6 top-10 w-0.5 h-full bg-gradient-to-b from-blue-300 to-indigo-200 opacity-40" />
             )}
 
-            <div className="flex gap-4">
+            <div className="flex gap-3">
                 {/* Timeline dot */}
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg">
+                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center shadow-md">
                     <span className="text-white font-bold text-sm">{index + 1}</span>
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                    <div className="flex items-start justify-between mb-4">
+                <div className="flex-1 bg-white rounded-xl p-4 shadow-sm border border-blue-50 hover:shadow-md hover:border-blue-100 transition-all">
+                    <div className="flex items-start justify-between mb-2">
                         <div>
-                            <h3 className="text-lg font-bold text-gray-800 mb-1">{step.phase}</h3>
-                            <div className="flex items-center gap-2 text-sm text-gray-600">
-                                <Clock className="w-4 h-4" />
-                                <span>{step.duration}</span>
+                            <h3 className="text-base font-bold text-slate-800 leading-none">{step.phase}</h3>
+                            <div className="flex items-center gap-1.5 text-xs text-slate-500 mt-1">
+                                <Clock className="w-3.5 h-3.5" />
+                                <span>{step.duration} &bull; Expected Timeline</span>
                             </div>
                         </div>
-                        <div className="px-3 py-1 bg-blue-50 rounded-full">
-                            <span className="text-xs font-semibold text-blue-700">Phase {index + 1}</span>
+                        <div className="px-2.5 py-0.5 bg-blue-50 rounded-lg border border-blue-100/50">
+                            <span className="text-[10px] uppercase font-black tracking-widest text-blue-600">Phase {index + 1}</span>
                         </div>
                     </div>
 
-                    {/* Activities */}
-                    <div className="mb-4">
-                        <h4 className="text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
-                            <CheckCircle className="w-4 h-4 text-green-600" />
-                            Key Activities
-                        </h4>
-                        <ul className="space-y-1">
-                            {step.activities.map((activity, i) => (
-                                <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-2 flex-shrink-0" />
-                                    {activity}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Skills */}
-                    <div className="mb-4">
-                        <h4 className="text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
-                            <Award className="w-4 h-4 text-purple-600" />
-                            Skills to Develop
-                        </h4>
-                        <div className="flex flex-wrap gap-2">
-                            {step.skills.map((skill, i) => (
-                                <span key={i} className="px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-xs font-medium">
-                                    {skill}
-                                </span>
-                            ))}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+                        {/* Activities */}
+                        <div className="bg-slate-50/50 rounded-lg p-3 border border-slate-100">
+                            <h4 className="text-[11px] uppercase tracking-wider font-black text-slate-600 mb-2 flex items-center gap-1.5">
+                                <CheckCircle className="w-3.5 h-3.5 text-cyan-500" /> Key Focus Areas
+                            </h4>
+                            <ul className="space-y-1">
+                                {step.activities.map((activity, i) => (
+                                    <li key={i} className="flex items-start gap-1.5 text-xs text-slate-600 font-medium">
+                                        <span className="w-1 h-1 rounded-full bg-cyan-400 mt-1.5 flex-shrink-0" />
+                                        {activity}
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
-                    </div>
 
-                    {/* Milestones */}
-                    <div>
-                        <h4 className="text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
-                            <Target className="w-4 h-4 text-orange-600" />
-                            Milestones
-                        </h4>
-                        <ul className="space-y-1">
-                            {step.milestones.map((milestone, i) => (
-                                <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-orange-400 mt-2 flex-shrink-0" />
-                                    {milestone}
-                                </li>
-                            ))}
-                        </ul>
+                        {/* Milestones & Skills */}
+                        <div className="bg-blue-50/30 rounded-lg p-3 border border-blue-50">
+                            <h4 className="text-[11px] uppercase tracking-wider font-black text-slate-600 mb-2 flex items-center gap-1.5">
+                                <Target className="w-3.5 h-3.5 text-indigo-500" /> Student Milestones
+                            </h4>
+                            <ul className="space-y-1 mb-3">
+                                {step.milestones.map((milestone, i) => (
+                                    <li key={i} className="flex items-start gap-1.5 text-xs text-slate-600 font-medium">
+                                        <span className="w-1 h-1 rounded-full bg-indigo-400 mt-1.5 flex-shrink-0" />
+                                        {milestone}
+                                    </li>
+                                ))}
+                            </ul>
+                            
+                            <div className="flex flex-wrap gap-1.5">
+                                {step.skills.map((skill, i) => (
+                                    <span key={i} className="px-2 py-0.5 bg-white text-blue-600 border border-blue-100 rounded text-[10px] font-bold shadow-sm">
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -645,58 +639,58 @@ function RoadmapStep({ step, index, total }: { step: RoadmapStep; index: number;
 function CareerStats({ career }: { career: CareerPath }) {
     const getDifficultyColor = (difficulty?: string) => {
         switch (difficulty) {
-            case 'Easy': return '#10b981';
-            case 'Medium': return '#f59e0b';
-            case 'Hard': return '#ef4444';
-            default: return '#6b7280';
+            case 'Easy': return '#0ea5e9'; // sky-500
+            case 'Medium': return '#3b82f6'; // blue-500
+            case 'Hard': return '#4f46e5'; // indigo-600
+            default: return '#64748b'; // slate-500
         }
     };
 
     const getGrowthColor = (growth?: string) => {
         switch (growth) {
-            case 'Very High': return '#10b981';
-            case 'High': return '#3b82f6';
-            case 'Medium': return '#f59e0b';
-            default: return '#6b7280';
+            case 'Very High': return '#06b6d4'; // cyan-500
+            case 'High': return '#0ea5e9'; // sky-500
+            case 'Medium': return '#3b82f6'; // blue-500
+            default: return '#64748b'; // slate-500
         }
     };
 
     return (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-100">
-                <div className="flex items-center gap-2 mb-2">
-                    <DollarSign className="w-5 h-5 text-green-600" />
-                    <span className="text-sm font-semibold text-gray-700">Salary Range</span>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
+                <div className="flex items-center gap-1.5 mb-1">
+                    <DollarSign className="w-4 h-4 text-cyan-500" />
+                    <span className="text-xs uppercase tracking-wider font-bold text-slate-500">Salary Avg.</span>
                 </div>
-                <p className="text-lg font-bold text-gray-800">{career.salary_range || '₹4-8 LPA'}</p>
+                <p className="text-base font-black text-slate-800">{career.salary_range || '₹4-8 LPA'}</p>
             </div>
 
-            <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-100">
-                <div className="flex items-center gap-2 mb-2">
-                    <Target className="w-5 h-5" style={{ color: getGrowthColor(career.growth_rate) }} />
-                    <span className="text-sm font-semibold text-gray-700">Growth Rate</span>
+            <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
+                <div className="flex items-center gap-1.5 mb-1">
+                    <Target className="w-4 h-4" style={{ color: getGrowthColor(career.growth_rate) }} />
+                    <span className="text-xs uppercase tracking-wider font-bold text-slate-500">Demand</span>
                 </div>
-                <p className="text-lg font-bold" style={{ color: getGrowthColor(career.growth_rate) }}>
+                <p className="text-base font-black" style={{ color: getGrowthColor(career.growth_rate) }}>
                     {career.growth_rate || 'Medium'}
                 </p>
             </div>
 
-            <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-100">
-                <div className="flex items-center gap-2 mb-2">
-                    <Award className="w-5 h-5" style={{ color: getDifficultyColor(career.difficulty) }} />
-                    <span className="text-sm font-semibold text-gray-700">Difficulty</span>
+            <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
+                <div className="flex items-center gap-1.5 mb-1">
+                    <Award className="w-4 h-4" style={{ color: getDifficultyColor(career.difficulty) }} />
+                    <span className="text-xs uppercase tracking-wider font-bold text-slate-500">Difficulty</span>
                 </div>
-                <p className="text-lg font-bold" style={{ color: getDifficultyColor(career.difficulty) }}>
+                <p className="text-base font-black" style={{ color: getDifficultyColor(career.difficulty) }}>
                     {career.difficulty || 'Medium'}
                 </p>
             </div>
 
-            <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-100">
-                <div className="flex items-center gap-2 mb-2">
-                    <BookOpen className="w-5 h-5 text-blue-600" />
-                    <span className="text-sm font-semibold text-gray-700">Degree</span>
+            <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
+                <div className="flex items-center gap-1.5 mb-1">
+                    <BookOpen className="w-4 h-4 text-blue-500" />
+                    <span className="text-xs uppercase tracking-wider font-bold text-slate-500">Education</span>
                 </div>
-                <p className="text-sm font-bold text-gray-800">{career.degree_required}</p>
+                <p className="text-sm font-black text-slate-800 truncate">{career.degree_required}</p>
             </div>
         </div>
     );
@@ -716,12 +710,8 @@ export default function CareerRoadmapPage() {
     useEffect(() => {
         const loadCareerData = async () => {
             try {
-                // Try to load from Supabase first
-                const { data } = await supabase
-                    .from('career_paths')
-                    .select('*')
-                    .eq('id', careerId)
-                    .single();
+                // Load from static data
+                let data = null;
 
                 if (data) {
                     setCareer(data);
@@ -753,20 +743,20 @@ export default function CareerRoadmapPage() {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            <div className="min-h-[50vh] flex items-center justify-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
             </div>
         );
     }
 
     if (!career) {
         return (
-            <div className="min-h-screen flex items-center justify-center">
+            <div className="min-h-[50vh] flex items-center justify-center">
                 <div className="text-center">
-                    <h1 className="text-2xl font-bold text-gray-800 mb-4">Career Not Found</h1>
+                    <h1 className="text-xl font-black text-slate-800 mb-3">Career Not Found</h1>
                     <button
                         onClick={() => router.back()}
-                        className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                        className="px-5 py-2.5 bg-blue-500 text-white font-bold rounded-xl hover:bg-blue-600 transition-colors shadow-lg shadow-blue-500/20"
                     >
                         Go Back
                     </button>
@@ -779,230 +769,217 @@ export default function CareerRoadmapPage() {
     const meta = STREAM_META[career.stream];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+        <div className="min-h-screen bg-transparent animate-in fade-in duration-500 pb-10">
             {/* Header */}
-            <div className="bg-white shadow-sm border-b border-gray-200">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between h-16">
+            <div className="bg-white/70 backdrop-blur-md shadow-sm border-b border-white sticky top-0 z-10 w-full rounded-b-3xl">
+                <div className="max-w-4xl mx-auto px-4">
+                    <div className="flex items-center justify-between h-14">
                         <button
                             onClick={() => router.back()}
-                            className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors"
+                            className="flex items-center gap-2 text-slate-500 hover:text-blue-600 font-bold text-xs uppercase tracking-wider transition-colors bg-white hover:bg-blue-50 px-3 py-1.5 rounded-lg shadow-sm border border-slate-100"
                         >
-                            <ArrowLeft className="w-5 h-5" />
-                            <span className="font-medium">Back to Careers</span>
+                            <ArrowLeft className="w-4 h-4" /> Back
                         </button>
-                        <div className="flex items-center gap-2">
-                            <div
-                                className="w-8 h-8 rounded-lg flex items-center justify-center"
-                                style={{ background: meta?.pill ? `${meta.pill}20` : '#667eea20' }}
-                            >
-                                <Icon className="w-4 h-4" style={{ color: meta?.pill || '#667eea' }} />
-                            </div>
-                            <span className="text-sm font-medium text-gray-600 capitalize">{career.stream}</span>
+                        <div className="flex items-center gap-2 bg-blue-50 border border-blue-100 px-3 py-1.5 rounded-lg shadow-sm">
+                            <Icon className="w-3.5 h-3.5 text-blue-600" />
+                            <span className="text-xs font-black text-blue-700 uppercase tracking-wider">{career.stream}</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="max-w-4xl mx-auto px-4 mt-6">
                 {/* Career Overview */}
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden mb-8">
+                <div className="bg-white rounded-[2rem] shadow-sm border border-white overflow-hidden mb-6 group">
                     {/* Hero Section */}
-                    <div
-                        className="relative h-48 flex items-center justify-between p-8 overflow-hidden"
-                        style={{ background: meta?.cardGrads?.[0] || 'linear-gradient(135deg,#667eea,#764ba2)' }}
-                    >
+                    <div className="relative flex items-center p-6 md:p-8 overflow-hidden bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-900">
                         {/* Decorative elements */}
-                        <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full opacity-20" style={{ background: 'rgba(255,255,255,0.5)' }} />
-                        <div className="absolute -bottom-6 -left-6 w-20 h-20 rounded-full opacity-15" style={{ background: 'rgba(255,255,255,0.4)' }} />
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+                        <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-500/20 rounded-full blur-[40px] pointer-events-none" />
 
-                        <div className="relative z-10 flex-1">
-                            <div className="flex items-center gap-3 mb-3">
-                                <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-white/20 backdrop-blur-sm">
-                                    <Icon className="w-6 h-6 text-white" />
-                                </div>
-                                <div>
-                                    <h1 className="text-2xl sm:text-3xl font-black text-white leading-tight">{career.title}</h1>
-                                    <p className="text-white/80 text-sm">{career.degree_required}</p>
-                                </div>
+                        <div className="relative z-10 flex-1 flex items-center gap-5">
+                            <div className="hidden sm:flex w-20 h-20 rounded-2xl items-center justify-center bg-white/10 backdrop-blur-md border border-white/20 shadow-inner group-hover:scale-105 transition-transform duration-500">
+                                <Icon className="w-10 h-10 text-cyan-300 drop-shadow-md" />
                             </div>
-                            <p className="text-white/90 text-sm leading-relaxed max-w-lg">{career.description}</p>
-                        </div>
-
-                        <div className="relative z-10 hidden sm:block">
-                            <div className="w-24 h-24 rounded-2xl flex items-center justify-center bg-white/10 backdrop-blur-sm border border-white/20">
-                                <Icon className="w-12 h-12 text-white" />
+                            <div>
+                                <div className="sm:hidden w-10 h-10 rounded-xl flex items-center justify-center bg-white/10 backdrop-blur-md mb-2">
+                                    <Icon className="w-5 h-5 text-cyan-300" />
+                                </div>
+                                <h1 className="text-2xl md:text-4xl font-extrabold text-white leading-tight tracking-tight mb-1">{career.title}</h1>
+                                <p className="text-blue-200 text-xs font-black uppercase tracking-widest bg-blue-900/50 inline-block px-2.5 py-0.5 rounded border border-blue-400/20 mb-3">{career.degree_required}</p>
+                                <p className="text-slate-300 text-sm md:text-base leading-snug max-w-xl font-medium">{career.description}</p>
                             </div>
                         </div>
                     </div>
 
                     {/* Stats */}
-                    <div className="p-8">
+                    <div className="p-4 bg-white">
                         <CareerStats career={career} />
                     </div>
                 </div>
 
-                {/* Roadmap Section */}
-                {roadmap && (
-                    <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mb-8">
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
-                                <MapPin className="w-5 h-5 text-blue-600" />
-                            </div>
-                            <div>
-                                <h2 className="text-2xl font-bold text-gray-800">Career Roadmap</h2>
-                                <p className="text-gray-600 text-sm">Your journey to becoming a {career.title}</p>
-                            </div>
-                        </div>
-
-                        <div className="mb-6">
-                            <p className="text-gray-700 leading-relaxed">{roadmap.overview}</p>
-                        </div>
-
-                        {/* Roadmap Steps */}
-                        <div className="space-y-8">
-                            {roadmap.roadmap.map((step, index) => (
-                                <RoadmapStep
-                                    key={index}
-                                    step={step}
-                                    index={index}
-                                    total={roadmap.roadmap.length}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                )}
-
-                {/* Key Skills */}
-                {roadmap && (
-                    <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mb-8">
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center">
-                                <Award className="w-5 h-5 text-purple-600" />
-                            </div>
-                            <h2 className="text-2xl font-bold text-gray-800">Key Skills Required</h2>
-                        </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {roadmap.keySkills.map((skill, index) => (
-                                <div key={index} className="flex items-center gap-3 p-4 bg-purple-50 rounded-xl border border-purple-100">
-                                    <div className="w-8 h-8 rounded-lg bg-purple-200 flex items-center justify-center">
-                                        <span className="text-sm font-bold text-purple-700">{index + 1}</span>
-                                    </div>
-                                    <span className="text-sm font-medium text-purple-900">{skill}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
-
-                {/* Salary Progression */}
-                {roadmap && (
-                    <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mb-8">
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center">
-                                <TrendingUp className="w-5 h-5 text-green-600" />
-                            </div>
-                            <h2 className="text-2xl font-bold text-gray-800">Salary Progression</h2>
-                        </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            {roadmap.salaryProgression.map((level, index) => (
-                                <div key={index} className="p-4 border border-gray-200 rounded-xl">
-                                    <div className="flex items-center justify-between mb-2">
-                                        <h3 className="font-bold text-gray-800">{level.level}</h3>
-                                        <span className="text-sm text-gray-500">{level.experience}</span>
-                                    </div>
-                                    <p className="text-lg font-semibold text-green-600">{level.range}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
-
-                {/* Job Opportunities */}
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mb-8">
-                    <div className="flex items-center gap-3 mb-6">
-                        <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
-                            <Users className="w-5 h-5 text-blue-600" />
-                        </div>
-                        <h2 className="text-2xl font-bold text-gray-800">Top Recruiters & Job Opportunities</h2>
-                    </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
-                        {career.job_opportunities.slice(0, 8).map((company, index) => (
-                            <div key={index} className="p-3 bg-gray-50 rounded-xl text-center border border-gray-200">
-                                <span className="text-sm font-medium text-gray-700">{company}</span>
-                            </div>
-                        ))}
-                    </div>
+                {/* Main Content Layout with 2 columns if large, otherwise 1 */}
+                <div className="space-y-6">
+                    {/* Roadmap Section */}
                     {roadmap && (
-                        <div>
-                            <h3 className="font-bold text-gray-800 mb-3">Career Progression</h3>
-                            <div className="flex flex-wrap gap-2">
-                                {roadmap.jobTitles.map((title, index) => (
-                                    <span key={index} className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
-                                        {title}
-                                    </span>
+                        <div className="bg-white rounded-3xl shadow-sm border border-blue-50 p-6 md:p-8">
+                            <div className="flex items-center gap-3 mb-5">
+                                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-100 to-blue-100 flex items-center justify-center shadow-inner border border-blue-200">
+                                    <MapPin className="w-5 h-5 text-blue-600" />
+                                </div>
+                                <div>
+                                    <h2 className="text-xl font-black text-slate-800">Student Career Roadmap</h2>
+                                    <p className="text-slate-500 font-medium text-xs">Step-by-step interactive progression for {career.title}</p>
+                                </div>
+                            </div>
+
+                            <p className="text-slate-600 font-medium text-sm leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-100 mb-6">
+                                {roadmap.overview}
+                            </p>
+
+                            <div className="space-y-4">
+                                {roadmap.roadmap.map((step, index) => (
+                                    <RoadmapStep
+                                        key={index}
+                                        step={step}
+                                        index={index}
+                                        total={roadmap.roadmap.length}
+                                    />
                                 ))}
                             </div>
                         </div>
                     )}
-                </div>
 
-                {/* Preparation Tips */}
-                {roadmap && (
-                    <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mb-8">
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center">
-                                <BookOpen className="w-5 h-5 text-orange-600" />
-                            </div>
-                            <h2 className="text-2xl font-bold text-gray-800">Preparation Tips</h2>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {roadmap.preparationTips.map((tip, index) => (
-                                <div key={index} className="flex items-start gap-3 p-4 bg-orange-50 rounded-xl border border-orange-100">
-                                    <div className="w-6 h-6 rounded-full bg-orange-200 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                        <span className="text-xs font-bold text-orange-700">{index + 1}</span>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                        {/* Key Skills */}
+                        {roadmap && (
+                            <div className="bg-white rounded-3xl shadow-sm border border-slate-100 p-6 h-full flex flex-col">
+                                <div className="flex items-center gap-2.5 mb-4">
+                                    <div className="w-8 h-8 rounded-lg bg-indigo-50 border border-indigo-100 flex items-center justify-center">
+                                        <Award className="w-4 h-4 text-indigo-500" />
                                     </div>
-                                    <p className="text-sm text-orange-900 leading-relaxed">{tip}</p>
+                                    <h2 className="text-lg font-black text-slate-800">Crucial Competencies</h2>
                                 </div>
-                            ))}
+                                <div className="flex flex-wrap gap-2 flex-col">
+                                    {roadmap.keySkills.map((skill, index) => (
+                                        <div key={index} className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100 shadow-sm transition-all hover:bg-white hover:border-indigo-100 hover:shadow-md">
+                                            <div className="w-6 h-6 rounded-md bg-indigo-100 flex items-center justify-center shrink-0">
+                                                <span className="text-xs font-black text-indigo-600">{index + 1}</span>
+                                            </div>
+                                            <span className="text-sm font-bold text-slate-700 leading-snug">{skill}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Salary Progression */}
+                        {roadmap && (
+                            <div className="bg-white rounded-3xl shadow-sm border border-slate-100 p-6 h-full flex flex-col">
+                                <div className="flex items-center gap-2.5 mb-4">
+                                    <div className="w-8 h-8 rounded-lg bg-cyan-50 border border-cyan-100 flex items-center justify-center">
+                                        <TrendingUp className="w-4 h-4 text-cyan-600" />
+                                    </div>
+                                    <h2 className="text-lg font-black text-slate-800">Financial Trajectory</h2>
+                                </div>
+                                <div className="flex flex-col gap-3 flex-1 justify-center">
+                                    {roadmap.salaryProgression.map((level, index) => (
+                                        <div key={index} className="p-4 bg-slate-50 border border-slate-100 rounded-xl relative overflow-hidden group hover:border-cyan-200 transition-colors">
+                                            <div className="absolute top-0 right-0 h-full w-2 bg-gradient-to-b from-cyan-400 to-blue-500 opacity-50 group-hover:opacity-100 transition-opacity" />
+                                            <div className="flex items-center justify-between mb-1">
+                                                <h3 className="font-extrabold text-slate-800 text-sm">{level.level}</h3>
+                                                <span className="text-[10px] uppercase font-black tracking-widest text-slate-500 bg-white px-2 py-0.5 rounded shadow-sm">{level.experience} exp</span>
+                                            </div>
+                                            <p className="text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">{level.range}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                        {/* Preparation Tips */}
+                        {roadmap && (
+                            <div className="bg-white rounded-3xl shadow-sm border border-slate-100 p-6">
+                                <div className="flex items-center gap-2.5 mb-4">
+                                    <div className="w-8 h-8 rounded-lg bg-sky-50 border border-sky-100 flex items-center justify-center">
+                                        <BookOpen className="w-4 h-4 text-sky-500" />
+                                    </div>
+                                    <h2 className="text-lg font-black text-slate-800">Student Prep Tips</h2>
+                                </div>
+                                <div className="flex flex-col gap-3">
+                                    {roadmap.preparationTips.map((tip, index) => (
+                                        <div key={index} className="flex items-start gap-3 p-3 bg-sky-50/50 rounded-xl border border-sky-100/50">
+                                            <div className="w-5 h-5 rounded-full bg-sky-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                                <CheckCircle className="w-3 h-3 text-sky-700" />
+                                            </div>
+                                            <p className="text-xs md:text-sm font-semibold text-slate-700 leading-snug">{tip}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Resources & Top Recruiters */}
+                        <div className="flex flex-col gap-6">
+                            {/* Resources */}
+                            {roadmap && (
+                                <div className="bg-white rounded-3xl shadow-sm border border-slate-100 p-6">
+                                    <div className="flex items-center gap-2.5 mb-4">
+                                        <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center">
+                                            <Heart className="w-4 h-4 text-blue-500" />
+                                        </div>
+                                        <h2 className="text-lg font-black text-slate-800">Essential Resources</h2>
+                                    </div>
+                                    <div className="space-y-2">
+                                        {roadmap.resources.map((resource, index) => (
+                                            <div key={index} className="flex items-center gap-2.5 p-2 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
+                                                <ChevronRight className="w-4 h-4 text-slate-400" />
+                                                <span className="text-xs md:text-sm font-bold text-slate-700">{resource}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Job Opportunities */}
+                            <div className="bg-white rounded-3xl shadow-sm border border-slate-100 p-6 flex-1">
+                                <div className="flex items-center gap-2.5 mb-4">
+                                    <div className="w-8 h-8 rounded-lg bg-indigo-50 border border-indigo-100 flex items-center justify-center">
+                                        <Users className="w-4 h-4 text-indigo-500" />
+                                    </div>
+                                    <h2 className="text-lg font-black text-slate-800">Top Recruiters</h2>
+                                </div>
+                                <div className="flex flex-wrap gap-2">
+                                    {career.job_opportunities.slice(0, 8).map((company, index) => (
+                                        <span key={index} className="px-3 py-1.5 bg-slate-50 text-slate-700 rounded-lg text-xs font-black shadow-sm border border-slate-100 hover:border-slate-300 transition-colors cursor-default">
+                                            {company}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
-                )}
 
-                {/* Resources */}
-                {roadmap && (
-                    <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mb-8">
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-                                <Heart className="w-5 h-5 text-indigo-600" />
-                            </div>
-                            <h2 className="text-2xl font-bold text-gray-800">Recommended Resources</h2>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {roadmap.resources.map((resource, index) => (
-                                <div key={index} className="flex items-center gap-3 p-4 bg-indigo-50 rounded-xl border border-indigo-100">
-                                    <div className="w-8 h-8 rounded-lg bg-indigo-200 flex items-center justify-center">
-                                        <ChevronRight className="w-4 h-4 text-indigo-700" />
-                                    </div>
-                                    <span className="text-sm font-medium text-indigo-900">{resource}</span>
-                                </div>
-                            ))}
+                    {/* CTA */}
+                    <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 rounded-[2rem] p-8 md:p-10 text-center text-white shadow-xl shadow-blue-500/20 relative overflow-hidden group">
+                        <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-blue-500 opacity-20 blur-xl group-hover:opacity-40 transition-opacity" />
+                        <div className="relative z-10">
+                            <h2 className="text-2xl md:text-3xl font-black mb-3 drop-shadow-md">Ready to Start Your Journey?</h2>
+                            <p className="text-blue-100 text-sm md:text-base font-medium mb-6 max-w-xl mx-auto">
+                                Take our student career assessment quiz to get personalized recommendations and build a tailored academic curriculum designed specifically for your goals.
+                            </p>
+                            <Link href="/career-quiz">
+                                <button
+                                    onClick={() => router.push('/career-quiz')}
+                                    className="inline-flex items-center gap-2 px-8 py-4 bg-white text-blue-600 rounded-xl font-bold hover:bg-blue-50 transition-colors shadow-lg"
+                                >
+                                    Take Career Quiz <ArrowRight className="w-5 h-5" />
+                                </button>
+                            </Link>
                         </div>
                     </div>
-                )}
-
-                {/* CTA */}
-                <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-center text-white">
-                    <h2 className="text-2xl font-bold mb-4">Ready to Start Your Journey?</h2>
-                    <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                        Take our career assessment quiz to get personalized recommendations and create your custom career roadmap.
-                    </p>
-                    <button
-                        onClick={() => router.push('/career-quiz')}
-                        className="inline-flex items-center gap-2 px-8 py-4 bg-white text-blue-600 rounded-xl font-bold hover:bg-gray-50 transition-colors shadow-lg"
-                    >
-                        Take Career Quiz <ArrowRight className="w-5 h-5" />
-                    </button>
                 </div>
             </div>
         </div>

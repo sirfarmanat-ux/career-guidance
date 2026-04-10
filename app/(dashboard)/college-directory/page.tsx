@@ -286,7 +286,7 @@ function CollegeCard({
           className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-[14px] font-bold text-white transition-all hover:bg-[#3D5BBA] active:scale-[0.98] shadow-sm shadow-[#4A68C8]/20"
           style={{ background: '#4A68C8' }}
         >
-          Explore Campus <ArrowRight className="w-4 h-4 ml-1" />
+          Explore Campus <ArrowRight className="w-4 h-4 ml-1" />Tell me. Assistant. 
         </Link>
       </div>
     </div>

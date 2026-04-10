@@ -11,7 +11,7 @@ const formatCurrentDate = () => {
   const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   return date.toLocaleDateString('en-US', options);
 };
-  
+
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
   { name: 'Career Quiz', href: '/career-quiz', icon: ClipboardList },
@@ -57,7 +57,7 @@ export default function DashboardLayout({
           <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-200">
             <Sparkles className="w-4 h-4 text-white" />
           </div>
-          <span className="text-xl font-bold text-slate-800">Learnthru</span>
+          <span className="text-xl font-bold text-slate-800">EduGuid</span>
         </div>
 
         <nav className="flex-1 space-y-1">
@@ -131,111 +131,111 @@ export default function DashboardLayout({
           <div className="flex-1 min-w-0">{children}</div>
 
           {/* RIGHT SIDEBAR - hidden on mobile, shown on lg screens, hidden on college directory, career quiz, career paths, & course suggestions */}
-          {!pathname?.startsWith('/college-directory') && !pathname?.startsWith('/career-quiz') && !pathname?.startsWith('/career-paths') && !pathname?.startsWith('/course-suggestions') && (
+          {pathname === '/dashboard' && (
             <aside className="hidden lg:block w-72 flex-shrink-0 space-y-4">
 
-            {/* ── Cold Cyan Profile Card ── */}
-            <div className="relative rounded-[2rem] bg-gradient-to-br from-white via-[#f0f6ff] to-[#e0e7ff] border border-white shadow-xl shadow-blue-900/5 transition-all duration-300 p-6 flex flex-col items-center text-center overflow-hidden">
-               
-               {/* Cold background blur element */}
-               <div className="absolute top-[-20%] left-[-20%] w-48 h-48 bg-cyan-400/10 rounded-full blur-[40px] pointer-events-none" />
-               <div className="absolute bottom-[-20%] right-[-20%] w-48 h-48 bg-blue-500/10 rounded-full blur-[40px] pointer-events-none" />
+              {/* ── Cold Cyan Profile Card ── */}
+              <div className="relative rounded-[2rem] bg-gradient-to-br from-white via-[#f0f6ff] to-[#e0e7ff] border border-white shadow-xl shadow-blue-900/5 transition-all duration-300 p-6 flex flex-col items-center text-center overflow-hidden">
 
-               {/* Elegant Avatar */}
-               <div className="w-20 h-20 bg-white flex items-center justify-center rounded-[1.25rem] border border-blue-100 shadow-sm mb-4 mt-2 group relative z-10 transition-transform hover:-translate-y-1 hover:shadow-md">
+                {/* Cold background blur element */}
+                <div className="absolute top-[-20%] left-[-20%] w-48 h-48 bg-cyan-400/10 rounded-full blur-[40px] pointer-events-none" />
+                <div className="absolute bottom-[-20%] right-[-20%] w-48 h-48 bg-blue-500/10 rounded-full blur-[40px] pointer-events-none" />
+
+                {/* Elegant Avatar */}
+                <div className="w-20 h-20 bg-white flex items-center justify-center rounded-[1.25rem] border border-blue-100 shadow-sm mb-4 mt-2 group relative z-10 transition-transform hover:-translate-y-1 hover:shadow-md">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition-opacity rounded-[1.25rem]" />
                   <User className="w-8 h-8 text-blue-400 relative z-10 group-hover:text-cyan-500 transition-colors" />
-               </div>
+                </div>
 
-               <h3 className="font-extrabold text-slate-800 text-lg mb-1 tracking-tight relative z-10">Stella Walton</h3>
-               <p className="text-[10px] text-blue-500 font-black uppercase tracking-widest mb-6 relative z-10">Class 12 Student</p>
+                <h3 className="font-extrabold text-slate-800 text-lg mb-1 tracking-tight relative z-10">Stella Walton</h3>
+                <p className="text-[10px] text-blue-500 font-black uppercase tracking-widest mb-6 relative z-10">Class 12 Student</p>
 
-               {/* Custom Info Block (Cold Theme) */}
-               <div className="w-full bg-white/60 backdrop-blur-md rounded-2xl p-4 mb-6 border border-white flex flex-col gap-3 relative z-10 shadow-sm shadow-blue-900/5">
+                {/* Custom Info Block (Cold Theme) */}
+                <div className="w-full bg-white/60 backdrop-blur-md rounded-2xl p-4 mb-6 border border-white flex flex-col gap-3 relative z-10 shadow-sm shadow-blue-900/5">
                   <div className="flex items-center justify-between">
-                     <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest flex items-center gap-1.5"><Briefcase className="w-3.5 h-3.5 text-cyan-500"/> Top Match</span>
-                     <span className="text-[11px] font-black text-slate-800">Software Eng.</span>
+                    <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest flex items-center gap-1.5"><Briefcase className="w-3.5 h-3.5 text-cyan-500" /> Top Match</span>
+                    <span className="text-[11px] font-black text-slate-800">Software Eng.</span>
                   </div>
                   <div className="w-full h-px bg-blue-100/50" />
                   <div className="flex items-center justify-between">
-                     <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest flex items-center gap-1.5"><TrendingUp className="w-3.5 h-3.5 text-blue-500"/> Trajectory</span>
-                     <span className="text-[10px] font-black text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-100 uppercase tracking-wider">Locked In</span>
+                    <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest flex items-center gap-1.5"><TrendingUp className="w-3.5 h-3.5 text-blue-500" /> Trajectory</span>
+                    <span className="text-[10px] font-black text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-100 uppercase tracking-wider">Locked In</span>
                   </div>
-               </div>
+                </div>
 
-               {/* Elegant Cold Button */}
-               <Link href="/edit-profile" className="relative z-10 w-full text-center bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white rounded-xl py-3.5 text-[11px] font-black tracking-widest uppercase transition-all shadow-lg shadow-blue-500/20 hover:shadow-cyan-500/30 flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
-                 View Portfolio <ChevronRight className="w-3.5 h-3.5 text-white/70" />
-               </Link>
-            </div>
-
-            {/* ── Important Dates ── */}
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-5 border border-white/80">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-bold text-slate-800 text-sm">Important Dates</h3>
-                <button className="flex items-center gap-1 text-xs text-[#5B7FDB] font-medium hover:text-[#4A6ECA]">
-                  View all <ChevronRight className="w-3.5 h-3.5" />
-                </button>
+                {/* Elegant Cold Button */}
+                <Link href="/edit-profile" className="relative z-10 w-full text-center bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white rounded-xl py-3.5 text-[11px] font-black tracking-widest uppercase transition-all shadow-lg shadow-blue-500/20 hover:shadow-cyan-500/30 flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
+                  View Portfolio <ChevronRight className="w-3.5 h-3.5 text-white/70" />
+                </Link>
               </div>
-              <div className="space-y-3">
-                {importantDates.map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-slate-50/80 transition-colors group">
-                    {/* Date badge */}
-                    <div className={`w-10 h-10 ${item.color} rounded-xl flex flex-col items-center justify-center flex-shrink-0 shadow-sm`}>
-                      <span className="text-sm font-extrabold text-white leading-none">{item.day}</span>
-                      <span className="text-[9px] text-white/80 font-medium uppercase">{item.month}</span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs font-semibold text-slate-700 leading-snug truncate">{item.title}</p>
-                      <p className="text-[11px] text-slate-400 mt-0.5">{item.date}</p>
-                    </div>
-                    <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-slate-400 flex-shrink-0" />
-                  </div>
-                ))}
-              </div>
-            </div>
 
-            {/* ── Government Exams & Scholarships ── */}
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-5 border border-white/80">
-              <h3 className="font-bold text-slate-800 text-sm mb-4">Government Exams &amp; Scholarships</h3>
-              <div className="space-y-2.5">
-                {govExams.map((item, i) => (
-                  <div key={i} className={`flex items-center gap-3 p-3 rounded-xl ${item.bg} hover:shadow-sm transition-all group cursor-pointer`}>
-                    <div className={`w-9 h-9 ${item.iconBg} rounded-xl flex items-center justify-center flex-shrink-0`}>
-                      <GraduationCap className={`w-4 h-4 ${item.iconColor}`} />
+              {/* ── Important Dates ── */}
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-5 border border-white/80">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="font-bold text-slate-800 text-sm">Important Dates</h3>
+                  <button className="flex items-center gap-1 text-xs text-[#5B7FDB] font-medium hover:text-[#4A6ECA]">
+                    View all <ChevronRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+                <div className="space-y-3">
+                  {importantDates.map((item, i) => (
+                    <div key={i} className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-slate-50/80 transition-colors group">
+                      {/* Date badge */}
+                      <div className={`w-10 h-10 ${item.color} rounded-xl flex flex-col items-center justify-center flex-shrink-0 shadow-sm`}>
+                        <span className="text-sm font-extrabold text-white leading-none">{item.day}</span>
+                        <span className="text-[9px] text-white/80 font-medium uppercase">{item.month}</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-semibold text-slate-700 leading-snug truncate">{item.title}</p>
+                        <p className="text-[11px] text-slate-400 mt-0.5">{item.date}</p>
+                      </div>
+                      <ChevronRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-slate-400 flex-shrink-0" />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs font-semibold text-slate-700 truncate">{item.title}</p>
-                      <p className="text-[11px] text-slate-400 mt-0.5">{item.date}</p>
-                    </div>
-                    <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-600 flex-shrink-0" />
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
 
-            {/* ── Top Free Resources ── */}
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-5 border border-white/80">
-              <h3 className="font-bold text-slate-800 text-sm mb-4">Top Free Resources</h3>
-              <div className="space-y-2.5">
-                {resources.map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-slate-50/70 hover:bg-white hover:shadow-sm transition-all group cursor-pointer border border-transparent hover:border-slate-100">
-                    <div className="w-9 h-9 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                      {i === 0
-                        ? <FileText className="w-4 h-4 text-blue-600" />
-                        : <BookOpen className="w-4 h-4 text-indigo-600" />
-                      }
+              {/* ── Government Exams & Scholarships ── */}
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-5 border border-white/80">
+                <h3 className="font-bold text-slate-800 text-sm mb-4">Government Exams &amp; Scholarships</h3>
+                <div className="space-y-2.5">
+                  {govExams.map((item, i) => (
+                    <div key={i} className={`flex items-center gap-3 p-3 rounded-xl ${item.bg} hover:shadow-sm transition-all group cursor-pointer`}>
+                      <div className={`w-9 h-9 ${item.iconBg} rounded-xl flex items-center justify-center flex-shrink-0`}>
+                        <GraduationCap className={`w-4 h-4 ${item.iconColor}`} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-semibold text-slate-700 truncate">{item.title}</p>
+                        <p className="text-[11px] text-slate-400 mt-0.5">{item.date}</p>
+                      </div>
+                      <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-600 flex-shrink-0" />
                     </div>
-                    <p className="text-xs font-semibold text-slate-700 flex-1 leading-snug">{item.title}</p>
-                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${item.tagColor} flex-shrink-0`}>
-                      {item.tag}
-                    </span>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
 
-          </aside>
+              {/* ── Top Free Resources ── */}
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-5 border border-white/80">
+                <h3 className="font-bold text-slate-800 text-sm mb-4">Top Free Resources</h3>
+                <div className="space-y-2.5">
+                  {resources.map((item, i) => (
+                    <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-slate-50/70 hover:bg-white hover:shadow-sm transition-all group cursor-pointer border border-transparent hover:border-slate-100">
+                      <div className="w-9 h-9 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        {i === 0
+                          ? <FileText className="w-4 h-4 text-blue-600" />
+                          : <BookOpen className="w-4 h-4 text-indigo-600" />
+                        }
+                      </div>
+                      <p className="text-xs font-semibold text-slate-700 flex-1 leading-snug">{item.title}</p>
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${item.tagColor} flex-shrink-0`}>
+                        {item.tag}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </aside>
           )}
         </div>
       </main>
