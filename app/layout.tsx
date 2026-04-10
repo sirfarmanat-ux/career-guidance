@@ -6,7 +6,7 @@ import { UserProvider } from '../hooks/user-context';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Learnthru - Your Career Guidance Platform',
+  title: 'EduGuide - Your Career Guidance Platform',
   description: 'Discover government colleges, scholarships, and career paths. Get personalized course recommendations through psychometric testing.',
   openGraph: {
     images: [
