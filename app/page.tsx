@@ -3,7 +3,7 @@
 import { Sparkles, GraduationCap, Building2, MapPin, TrendingUp, ArrowRight, Star, Hexagon, Triangle } from "lucide-react";
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   // Staggered animation controller for the main content
