@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { useUserContext } from '@/hooks/user-context';
+import UniversityChat from '@/components/UniversityChat';
 
 const formatCurrentDate = () => {
   const date = new Date();
@@ -19,18 +20,22 @@ const navigation = [
   { name: 'Course Suggestions', href: '/course-suggestions', icon: GraduationCap },
   { name: 'Career Paths', href: '/career-paths', icon: Briefcase },
   { name: 'College Directory', href: '/college-directory', icon: Building2 },
+  { name: 'Counselling', href: '/counselling', icon: Headphones },
 ];
 
 const importantDates = [
-  { day: '23', month: 'Apr', title: 'Scholarship Application Deadline', date: '25 Apr, 2022, Friday', color: 'bg-rose-500' },
-  { day: '25', month: 'Apr', title: 'Entrance Exam Registration Opens', date: '26 Apr, 2022, Friday', color: 'bg-amber-500' },
-  { day: '26', month: 'Apr', title: 'Career Counseling Session', date: '26 Apr, 2022, Friday', color: 'bg-emerald-500' },
+  { day: '12', month: 'Apr', title: 'UPSC NDA & CDS (I) Exam', date: '12 Apr, 2026, Sunday', color: 'bg-rose-500' },
+  { day: '13', month: 'Apr', title: 'RBI Assistant Prelims', date: '13 Apr, 2026, Monday', color: 'bg-amber-500' },
+  { day: '30', month: 'Apr', title: 'SSC CHSL 2026 Notification', date: '30 Apr, 2026, Thursday', color: 'bg-emerald-500' },
 ];
 
+
 const govExams = [
-  { title: 'NCERT Scholarship Test', date: '30 Apr, 2022, Friday', bg: 'bg-blue-50', iconBg: 'bg-blue-100', iconColor: 'text-blue-600' },
-  { title: 'SSC CHSL Exam', date: '26 Apr, 2022, Friday', bg: 'bg-indigo-50', iconBg: 'bg-indigo-100', iconColor: 'text-indigo-600' },
+  { title: 'JEE Main Session 2', date: '02 Apr, 2026, Thursday', bg: 'bg-blue-50', iconBg: 'bg-blue-100', iconColor: 'text-blue-600' },
+  { title: 'UPSC NDA & CDS (I)', date: '12 Apr, 2026, Sunday', bg: 'bg-indigo-50', iconBg: 'bg-indigo-100', iconColor: 'text-indigo-600' },
+  { title: 'MHT CET (PCM)', date: '11 Apr, 2026, Saturday', bg: 'bg-purple-50', iconBg: 'bg-purple-100', iconColor: 'text-purple-600' },
 ];
+
 
 const resources = [
   { title: 'E-book for Class 12 Physics', tag: 'Free', tagColor: 'bg-emerald-100 text-emerald-700' },
@@ -58,28 +63,6 @@ export default function DashboardLayout({
 
   return (
     <div className="min-h-screen flex bg-transparent">
-      <div className="fixed bottom-6 right-6 z-50">
-        <button 
-        onClick={()=>{
-          router.push('/counselling')
-        }}
-        className="relative w-16 h-16 bg-blue-600 rounded-full text-white shadow-xl hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 flex items-center justify-center animate-pulse-subtle">
-          {/* The icons/content */}
-          <div className="relative z-10 flex items-center justify-center w-full h-full">
-            {/* Standard icon */}
-            <Video className="w-8 h-8 text-white group-hover:hidden transition-opacity duration-300 opacity-100 group-hover:opacity-0" />
-            {/* Alternative icon on hover */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <Mic className="w-6 h-6 text-white" />
-              <Phone className="w-6 h-6 text-white ml-1" />
-            </div>
-          </div>
-
-          {/* Notification badge */}
-          <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">3</span>
-
-        </button>
-      </div>
       {/* LEFT SIDEBAR - fixed */}
       <aside className="hidden lg:flex w-64 bg-white/60 backdrop-blur-sm p-6 flex-col gap-6 fixed top-0 left-0 h-screen overflow-y-auto z-20">
         <div className="flex items-center gap-3">
@@ -207,7 +190,7 @@ export default function DashboardLayout({
 
                 {/* Elegant Cold Button */}
                 <Link href="/edit-profile" className="relative z-10 w-full text-center bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white rounded-xl py-3.5 text-[11px] font-black tracking-widest uppercase transition-all shadow-lg shadow-blue-500/20 hover:shadow-cyan-500/30 flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
-                  View Portfolio <ChevronRight className="w-3.5 h-3.5 text-white/70" />
+                  View Profile <ChevronRight className="w-3.5 h-3.5 text-white/70" />
                 </Link>
               </div>
 
@@ -239,7 +222,7 @@ export default function DashboardLayout({
 
               {/* ── Government Exams & Scholarships ── */}
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-5 border border-white/80">
-                <h3 className="font-bold text-slate-800 text-sm mb-4">Government Exams &amp; Scholarships</h3>
+                <h3 className="font-bold text-slate-800 text-sm mb-4">Exams &amp; Scholarships</h3>
                 <div className="space-y-2.5">
                   {govExams.map((item, i) => (
                     <div key={i} className={`flex items-center gap-3 p-3 rounded-xl ${item.bg} hover:shadow-sm transition-all group cursor-pointer`}>
@@ -304,6 +287,7 @@ export default function DashboardLayout({
           );
         })}
       </nav>
+      <UniversityChat/>
     </div>
   );
 }
