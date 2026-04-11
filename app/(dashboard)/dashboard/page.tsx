@@ -90,7 +90,7 @@ const careerPaths = [
 export default function DashboardPage() {
   const {user} = useUserContext();
 
-  const getSuggestions = () => {
+  const getSuggestions = (): any[] => {
     if (user?.psychometricResults?.recommendations && user.psychometricResults.recommendations.length > 0) {
       return user.psychometricResults.recommendations.map(id => {
         const spec = SPEC_MAP[id];
@@ -318,7 +318,7 @@ export default function DashboardPage() {
                   </div>
 
                   <div className="relative z-10 flex gap-1.5 mt-3 flex-wrap">
-                    {stream.careers.map((c) => (
+                    {stream.careers.map((c: string) => (
                       <span key={c} className="bg-white/20 backdrop-blur-sm text-white text-xs rounded-full px-2.5 py-0.5">
                         {c}
                       </span>
@@ -332,7 +332,7 @@ export default function DashboardPage() {
                     Top Courses
                   </p>
                   <ul className="space-y-2.5 mb-4">
-                    {stream.suggestions.map((s) => (
+                    {stream.suggestions.map((s: string) => (
                       <li key={s} className="flex items-center gap-2.5">
                         <span className={`w-2 h-2 rounded-full ${stream.dotColor} flex-shrink-0`} />
                         <span className="text-sm text-slate-600 font-medium">{s}</span>
