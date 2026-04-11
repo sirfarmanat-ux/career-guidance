@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { useUserContext } from '@/hooks/user-context';
 import UniversityChat from '@/components/UniversityChat';
+import { UserButton } from '@clerk/nextjs';
 
 const formatCurrentDate = () => {
   const date = new Date();
@@ -133,7 +134,7 @@ export default function DashboardLayout({
 
             {/* Mobile Profile Avatar Button */}
             <Link href="/edit-profile" className="lg:hidden w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 shadow-sm ring-2 ring-white hover:bg-slate-200 transition-colors">
-              <User className="w-4 h-4" />
+              <UserButton/>
             </Link>
           </div>
         </header>

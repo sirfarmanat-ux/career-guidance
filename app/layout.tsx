@@ -35,7 +35,6 @@ export default function RootLayout({
       <ClerkProvider>
         <UserProvider>
           <body className={inter.className}>
-            <div className='absolute right-5 z-20'><UserButton /></div>
             {children}
           </body>
         </UserProvider>
