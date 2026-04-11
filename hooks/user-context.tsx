@@ -8,6 +8,13 @@ export type UserPreferences = {
   careerGoals?: string[];
 };
 
+export type PsychometricResults = {
+  completedAt?: Date;
+  traitScores?: Record<string, number>;
+  specializationScores?: Record<string, number>;
+  recommendations?: string[];
+};
+
 export type UserProfile = {
   clerkUserId: string;
   email: string;
@@ -20,6 +27,7 @@ export type UserProfile = {
   role?: 'student' | 'counselor' | 'admin' | 'guest';
   onboardingStatus?: 'pending' | 'completed' | 'in_progress';
   preferences?: UserPreferences;
+  psychometricResults?: PsychometricResults;
 };
 
 export type UserContextValue = {

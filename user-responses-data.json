@@ -1,0 +1,26 @@
+[
+  {
+    "userId": "user_3CAgECtqPLjN6lQQsH4Ox4wTwTY",
+    "email": "arshstartstocode@gmail.com",
+    "name": "ArshCodes",
+    "preferences": { "interests": [], "streams": [], "careerGoals": [] },
+    "psychometricResults": { "recommendations": [] },
+    "recommendations": [],
+    "collegePreferences": []
+  },
+  {
+    "userId": "user_3CB0u5oAMT2nxIAid73FY0NZEsi",
+    "email": "sirfarman.at@gmail.com",
+    "name": "Arman",
+    "preferences": { "interests": [], "streams": [], "careerGoals": [] },
+    "psychometricResults": { "recommendations": [] },
+    "recommendations": [],
+    "collegePreferences": []
+  },
+  {
+    "preferences": { "interests": [], "streams": [], "careerGoals": [] },
+    "psychometricResults": { "recommendations": [] },
+    "recommendations": [],
+    "collegePreferences": []
+  }
+]
