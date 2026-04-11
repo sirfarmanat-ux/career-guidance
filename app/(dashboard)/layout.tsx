@@ -267,7 +267,7 @@ export default function DashboardLayout({
       </main>
 
       {/* MOBILE BOTTOM NAV */}
-      <nav className="fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-md border-t border-slate-200/50 z-50 flex lg:hidden items-center justify-around py-2 px-1 shadow-[0_-10px_40px_rgba(0,0,0,0.06)] pb-safe-bottom">
+      <nav className="fixed bottom-0 left-0 w-full z-30 bg-white/95 backdrop-blur-md border-t border-slate-200/50 z-50 flex lg:hidden items-center justify-around py-2 px-1 shadow-[0_-10px_40px_rgba(0,0,0,0.06)] pb-safe-bottom">
         {navigation.map((item) => {
           const isActive = pathname === item.href || pathname?.startsWith(item.href + '/');
           const Icon = item.icon;
