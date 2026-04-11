@@ -76,12 +76,6 @@ const UserSchema = new Schema({
     streams: [String],
     careerGoals: [String],
   },
-  psychometricResults: {
-    completedAt: Date,
-    traitScores: Schema.Types.Mixed,
-    specializationScores: Schema.Types.Mixed,
-    recommendations: [String],
-  },
   metadata: Schema.Types.Mixed,
 }, {
   timestamps: true,
