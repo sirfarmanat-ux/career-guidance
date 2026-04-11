@@ -86,13 +86,15 @@ function computeResults(answers: AnswerMap) {
   const maxScore = Math.max(...scored.map(i => i.score), 1);
   const scalingFactor = maxScore * 1.15; // Inflate max slightly to avoid 100% match
   
-  return scored
+  const results = scored
     .map(item => ({ 
       ...item, 
       pct: Math.min(97, Math.max(10, Math.round((item.score / scalingFactor) * 100))) 
     }))
     .sort((a, b) => b.score - a.score)
     .slice(0, 5);
+
+  return { results, traitScores };
 }
 
 export default function CareerQuiz() {
@@ -100,7 +102,7 @@ export default function CareerQuiz() {
   const [quizQuestions, setQuizQuestions] = useState<PsychometricQuestion[]>(() => createQuizQuestions());
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<AnswerMap>({});
-  const [results, setResults] = useState<ResultItem[] | null>(null);
+  const [results, setResults] = useState<{ results: ResultItem[], traitScores: Record<string, number> } | null>(null);
   const [expandedSecondary, setExpandedSecondary] = useState<Set<string>>(new Set());
   const topRef = useRef<HTMLDivElement | null>(null);
   const TOTAL_QUESTIONS = quizQuestions.length;
@@ -126,6 +128,32 @@ export default function CareerQuiz() {
   };
   const handleBack = () => { if (currentIndex > 0) setCurrentIndex(p => p - 1); };
   const restart = () => { setQuizQuestions(createQuizQuestions()); setAnswers({}); setCurrentIndex(0); setResults(null); setExpandedSecondary(new Set()); setScreen('welcome'); };
+
+  useEffect(() => {
+    if (screen === 'results' && results) {
+      const saveResults = async () => {
+        try {
+          const response = await fetch('/api/user', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              psychometricResults: {
+                traitScores: results.traitScores,
+                specializationScores: results.results.reduce((acc, r) => { acc[r.specialization_id] = r.score; return acc; }, {}),
+                recommendations: results.results.map(r => r.specialization_id),
+              }
+            })
+          });
+          if (!response.ok) {
+            console.error('Failed to save results');
+          }
+        } catch (error) {
+          console.error('Error saving results:', error);
+        }
+      };
+      saveResults();
+    }
+  }, [screen, results]);
 
   const WELCOME_BLOCKS = [
     { icon: Compass, colorBg: 'bg-gradient-to-br from-blue-50 to-indigo-100', colorBorder: 'border-indigo-200', iconColor: 'text-indigo-600', badge: 'bg-indigo-100 text-indigo-700' },
@@ -347,7 +375,7 @@ if (screen === 'quiz' && currentQuestion) {
      SCREEN 3: RESULTS (Cold Light, Compact, Points-based UI)
   ========================================= */
   if (screen === 'results' && results) {
-    const topResult = results[0];
+    const topResult = results.results[0];
     return (
       <div className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 animate-in slide-in-from-bottom-8 duration-700" ref={topRef}>
         
@@ -462,7 +490,7 @@ if (screen === 'quiz' && currentQuestion) {
              <Activity className="w-4 h-4 text-slate-400" /> Secondary Viable Trajectories
            </h3>
            <div className="grid md:grid-cols-3 gap-3">
-             {results.slice(1, 4).map((result, i) => {
+             {results.results.slice(1, 4).map((result, i) => {
                const isExpanded = expandedSecondary.has(result.specialization_id);
                return (
                 <div key={result.specialization_id} className="bg-white rounded-2xl border border-slate-200 p-4 group hover:border-blue-300 hover:bg-blue-50/30 transition-colors shadow-sm">
@@ -508,7 +536,7 @@ if (screen === 'quiz' && currentQuestion) {
                        <Link
                          href={`/secondary-trajectories`}
                          onClick={() => {
-                           localStorage.setItem('secondaryTrajectories', JSON.stringify(results.slice(1, 4)));
+                           localStorage.setItem('secondaryTrajectories', JSON.stringify(results.results.slice(1, 4)));
                          }}
                          className="inline-flex w-full items-center justify-center gap-1.5 bg-gradient-to-r from-blue-400 to-indigo-400 text-white font-bold text-xs px-3 py-2 rounded-lg hover:scale-[1.02] transition-transform active:scale-95 shadow-sm"
                        >
