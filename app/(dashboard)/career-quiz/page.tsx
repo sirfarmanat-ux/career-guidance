@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { 
-  Activity, ArrowRight, BrainCircuit, BookHeart, CheckCircle2, 
-  ChevronDown, ChevronRight, Compass, Sparkles, Milestone, GraduationCap, 
+import {
+  Activity, ArrowRight, BrainCircuit, BookHeart, CheckCircle2,
+  ChevronDown, ChevronRight, Compass, Sparkles, Milestone, GraduationCap,
   Target, Rocket, Lightbulb, Star, TrendingUp, Briefcase, Zap, RotateCcw
 } from 'lucide-react';
 import psychometricJson from '@/psychometric.json';
@@ -85,11 +85,11 @@ function computeResults(answers: AnswerMap) {
   const scored: ResultItem[] = Object.values(SPEC_MAP).map(spec => ({ ...spec, score: spec.psychometric_traits.reduce((sum, trait) => sum + (traitScores[trait] || 0), 0), pct: 0 }));
   const maxScore = Math.max(...scored.map(i => i.score), 1);
   const scalingFactor = maxScore * 1.15; // Inflate max slightly to avoid 100% match
-  
+
   return scored
-    .map(item => ({ 
-      ...item, 
-      pct: Math.min(97, Math.max(10, Math.round((item.score / scalingFactor) * 100))) 
+    .map(item => ({
+      ...item,
+      pct: Math.min(97, Math.max(10, Math.round((item.score / scalingFactor) * 100)))
     }))
     .sort((a, b) => b.score - a.score)
     .slice(0, 5);
@@ -115,7 +115,7 @@ export default function CareerQuiz() {
     if (!currentQuestion) return;
     const nextAnswers = { ...answers, [currentQuestion.question_id]: optionId };
     setAnswers(nextAnswers);
-    if (currentIndex < TOTAL_QUESTIONS - 1) setTimeout(() => setCurrentIndex(p => p + 1), 350); 
+    if (currentIndex < TOTAL_QUESTIONS - 1) setTimeout(() => setCurrentIndex(p => p + 1), 350);
     else setTimeout(() => { setResults(computeResults(nextAnswers)); setScreen('results'); }, 400);
   };
 
@@ -137,15 +137,15 @@ export default function CareerQuiz() {
   if (screen === 'welcome') {
     return (
       <div className="w-full max-w-5xl mx-auto py-6 px-4 sm:px-6 lg:px-8 animate-in fade-in duration-500" ref={topRef}>
-        
+
         {/* COMPACT & AESTHETIC HERO - COLD LIGHT */}
         <div className="rounded-[2rem] bg-gradient-to-br from-white via-[#f0f6ff] to-[#e0e7ff] relative overflow-hidden shadow-xl shadow-blue-900/5 flex flex-col md:flex-row items-center justify-between p-6 md:p-10 gap-8 border border-white shadow-inner">
-          
+
           {/* Abstract Objects Background */}
           {/* Subtle frosted glass rings */}
           <div className="absolute top-[-20%] right-[-10%] w-[350px] h-[350px] border-[2px] border-blue-400/10 rounded-full pointer-events-none" />
           <div className="absolute top-[-10%] right-[-5%] w-[250px] h-[250px] border-[6px] border-cyan-400/5 rounded-full pointer-events-none" />
-          
+
           {/* Diffused cold light blobs */}
           <div className="absolute bottom-[-20%] right-[10%] w-72 h-72 bg-blue-400/10 rounded-full blur-[60px] pointer-events-none" />
           <div className="absolute top-0 right-[25%] w-48 h-48 bg-cyan-300/15 rounded-full blur-[60px] pointer-events-none" />
@@ -154,64 +154,64 @@ export default function CareerQuiz() {
           {/* Left: Content (Compact) */}
           <div className="relative z-10 flex-1 space-y-4 text-center md:text-left self-center">
             <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full px-3 py-1.5 shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-                <span className="text-blue-700 text-[10px] font-black uppercase tracking-[0.2em] leading-none">Cognitive Mapping Model</span>
+              <Sparkles className="w-3.5 h-3.5 text-blue-500" />
+              <span className="text-blue-700 text-[10px] font-black uppercase tracking-[0.2em] leading-none">Cognitive Mapping Model</span>
             </div>
-            
+
             <h1 className="text-3xl md:text-5xl font-extrabold text-slate-800 leading-tight tracking-tight drop-shadow-sm pb-1">
-               Discover Your True <br className="hidden md:block" />
-               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-500">Career Trajectory</span>
+              Discover Your True <br className="hidden md:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-500">Career Trajectory</span>
             </h1>
-            
+
             <p className="text-slate-500 text-[13px] md:text-sm font-medium leading-relaxed max-w-md mx-auto md:mx-0">
-               A high-precision 20-question psychometric engine to cleanly align your innate personality with the most lucrative and impactful career pathways.
+              A high-precision 20-question psychometric engine to cleanly align your innate personality with the most lucrative and impactful career pathways.
             </p>
 
             <div className="pt-2">
-               <button
-                 onClick={() => setScreen('quiz')}
-                 className="group inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-8 py-3.5 text-sm font-black text-white shadow-xl shadow-blue-500/20 hover:shadow-blue-500/30 hover:scale-[1.02] transition-all"
-               >
-                  Initiate Assessment <ArrowRight className="h-4 w-4 text-white group-hover:translate-x-1 transition-transform" />
-               </button>
+              <button
+                onClick={() => setScreen('quiz')}
+                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-8 py-3.5 text-sm font-black text-white shadow-xl shadow-blue-500/20 hover:shadow-blue-500/30 hover:scale-[1.02] transition-all"
+              >
+                Initiate Assessment <ArrowRight className="h-4 w-4 text-white group-hover:translate-x-1 transition-transform" />
+              </button>
             </div>
           </div>
 
           {/* Right: Study & Career Conceptual Art - Cold Theme */}
           <div className="relative z-10 hidden md:flex w-64 h-64 shrink-0 items-center justify-center">
-             <div className="relative w-full h-full flex items-center justify-center group">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-200/30 to-cyan-200/30 blur-2xl rounded-full" />
-                
-                {/* Cold Light Orbit Rings */}
-                <svg viewBox="0 0 200 200" className="absolute w-56 h-56 animate-[spin_40s_linear_infinite]">
-                   <circle cx="100" cy="100" r="90" fill="none" stroke="url(#orbitGrad)" strokeWidth="1" strokeDasharray="6 6" />
-                   <circle cx="100" cy="100" r="70" fill="none" stroke="url(#orbitGrad)" strokeWidth="2" opacity="0.3" />
-                   <defs>
-                     <linearGradient id="orbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                       <stop offset="0%" stopColor="#3b82f6" />
-                       <stop offset="100%" stopColor="#06b6d4" opacity="0" />
-                     </linearGradient>
-                   </defs>
-                </svg>
+            <div className="relative w-full h-full flex items-center justify-center group">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-200/30 to-cyan-200/30 blur-2xl rounded-full" />
 
-                {/* Orbiting Study Elements */}
-                <div className="absolute w-full h-full animate-[spin_20s_linear_infinite]">
-                   <div className="absolute top-2 left-1/2 -translate-x-1/2 w-9 h-9 bg-white rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.2)] flex items-center justify-center border border-blue-50 animate-[spin_20s_linear_infinite_reverse]">
-                      <BookHeart className="w-4 h-4 text-blue-500" />
-                   </div>
-                   <div className="absolute bottom-8 right-6 w-8 h-8 bg-white rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)] flex items-center justify-center border border-cyan-50 animate-[spin_20s_linear_infinite_reverse]">
-                      <Lightbulb className="w-4 h-4 text-cyan-500" />
-                   </div>
-                   <div className="absolute top-16 left-2 w-7 h-7 bg-blue-500 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.4)] flex items-center justify-center border border-blue-400 animate-[spin_20s_linear_infinite_reverse]">
-                      <Star className="w-3 h-3 text-white fill-white" />
-                   </div>
-                </div>
+              {/* Cold Light Orbit Rings */}
+              <svg viewBox="0 0 200 200" className="absolute w-56 h-56 animate-[spin_40s_linear_infinite]">
+                <circle cx="100" cy="100" r="90" fill="none" stroke="url(#orbitGrad)" strokeWidth="1" strokeDasharray="6 6" />
+                <circle cx="100" cy="100" r="70" fill="none" stroke="url(#orbitGrad)" strokeWidth="2" opacity="0.3" />
+                <defs>
+                  <linearGradient id="orbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#3b82f6" />
+                    <stop offset="100%" stopColor="#06b6d4" opacity="0" />
+                  </linearGradient>
+                </defs>
+              </svg>
 
-                {/* Center pristine Graduation Cap */}
-                <div className="relative w-24 h-24 rounded-full border border-white bg-white/80 backdrop-blur-md flex items-center justify-center shadow-[0_0_35px_rgba(59,130,246,0.2)] group-hover:scale-110 transition-transform duration-700">
-                   <GraduationCap className="w-10 h-10 text-blue-600" strokeWidth={1.5} />
+              {/* Orbiting Study Elements */}
+              <div className="absolute w-full h-full animate-[spin_20s_linear_infinite]">
+                <div className="absolute top-2 left-1/2 -translate-x-1/2 w-9 h-9 bg-white rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.2)] flex items-center justify-center border border-blue-50 animate-[spin_20s_linear_infinite_reverse]">
+                  <BookHeart className="w-4 h-4 text-blue-500" />
                 </div>
-             </div>
+                <div className="absolute bottom-8 right-6 w-8 h-8 bg-white rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)] flex items-center justify-center border border-cyan-50 animate-[spin_20s_linear_infinite_reverse]">
+                  <Lightbulb className="w-4 h-4 text-cyan-500" />
+                </div>
+                <div className="absolute top-16 left-2 w-7 h-7 bg-blue-500 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.4)] flex items-center justify-center border border-blue-400 animate-[spin_20s_linear_infinite_reverse]">
+                  <Star className="w-3 h-3 text-white fill-white" />
+                </div>
+              </div>
+
+              {/* Center pristine Graduation Cap */}
+              <div className="relative w-24 h-24 rounded-full border border-white bg-white/80 backdrop-blur-md flex items-center justify-center shadow-[0_0_35px_rgba(59,130,246,0.2)] group-hover:scale-110 transition-transform duration-700">
+                <GraduationCap className="w-10 h-10 text-blue-600" strokeWidth={1.5} />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -240,11 +240,11 @@ export default function CareerQuiz() {
     );
   }
 
-if (screen === 'quiz' && currentQuestion) {
+  if (screen === 'quiz' && currentQuestion) {
     const isLast = currentIndex === TOTAL_QUESTIONS - 1;
     const SectionIcon = currentQuestion.section_id === 'interest' ? Compass :
-                        currentQuestion.section_id === 'aptitude' ? Activity :
-                        currentQuestion.section_id === 'personality' ? BookHeart : Lightbulb;
+      currentQuestion.section_id === 'aptitude' ? Activity :
+        currentQuestion.section_id === 'personality' ? BookHeart : Lightbulb;
 
     return (
       <div className="min-h-screen flex flex-col justify-center w-full max-w-2xl mx-auto px-4 py-4" ref={topRef}>
@@ -298,23 +298,20 @@ if (screen === 'quiz' && currentQuestion) {
                   onClick={() => handleOptionSelect(option.option_id)}
                   className={`w-full group text-left outline-none transition-all duration-200 ${selected ? 'scale-[1.01]' : 'hover:scale-[1.005]'}`}
                 >
-                  <div className={`flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-200 ${
-                    selected
+                  <div className={`flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-200 ${selected
                       ? 'bg-gradient-to-r from-[#3B5FCC] to-[#5B7FDB] border-transparent shadow-md shadow-indigo-200'
                       : 'bg-white border-slate-100 hover:border-[#5B7FDB] hover:bg-slate-50 hover:shadow-sm'
-                  }`}>
-                    <div className={`flex shrink-0 w-8 h-8 items-center justify-center rounded-lg font-black text-xs transition-all ${
-                      selected
+                    }`}>
+                    <div className={`flex shrink-0 w-8 h-8 items-center justify-center rounded-lg font-black text-xs transition-all ${selected
                         ? 'bg-white/20 text-white'
                         : 'bg-slate-100 text-slate-500 group-hover:bg-indigo-50 group-hover:text-[#3B5FCC]'
-                    }`}>
+                      }`}>
                       {selected
                         ? <CheckCircle2 className="w-4 h-4 text-white" />
                         : prefixLabel}
                     </div>
-                    <p className={`text-sm font-semibold leading-snug flex-1 ${
-                      selected ? 'text-white' : 'text-slate-700 group-hover:text-slate-900'
-                    }`}>
+                    <p className={`text-sm font-semibold leading-snug flex-1 ${selected ? 'text-white' : 'text-slate-700 group-hover:text-slate-900'
+                      }`}>
                       {option.text}
                     </p>
                   </div>
@@ -350,183 +347,186 @@ if (screen === 'quiz' && currentQuestion) {
     const topResult = results[0];
     return (
       <div className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 animate-in slide-in-from-bottom-8 duration-700" ref={topRef}>
-        
+
         {/* COMPACT TOP MATCH - COLD LIGHT STYLE */}
         <div className="relative rounded-3xl bg-gradient-to-br from-slate-50 via-[#f0f6ff] to-cyan-50/60 border border-blue-100 shadow-xl overflow-hidden mb-6">
-           {/* Abstract subtle cold-light accents */}
-           <div className="absolute top-[-20%] right-[-10%] w-[400px] h-[400px] bg-cyan-200/20 rounded-full blur-[80px] pointer-events-none" />
-           <div className="absolute bottom-[-10%] left-[-10%] w-[300px] h-[300px] bg-indigo-200/20 rounded-full blur-[60px] pointer-events-none" />
+          {/* Abstract subtle cold-light accents */}
+          <div className="absolute top-[-20%] right-[-10%] w-[400px] h-[400px] bg-cyan-200/20 rounded-full blur-[80px] pointer-events-none" />
+          <div className="absolute bottom-[-10%] left-[-10%] w-[300px] h-[300px] bg-indigo-200/20 rounded-full blur-[60px] pointer-events-none" />
 
-           <div className="relative z-10 flex flex-col md:flex-row items-center p-6 md:p-8 gap-8">
-              
-              {/* Left Score Ring */}
-              <div className="shrink-0 flex flex-col items-center justify-center">
-                 <div className="relative w-36 h-36 flex items-center justify-center mb-4">
-                    <svg className="absolute inset-0 w-full h-full -rotate-90 drop-shadow-md" viewBox="0 0 200 200">
-                      <circle cx="100" cy="100" r="90" fill="none" stroke="#e0e7ff" strokeWidth="12" />
-                      <circle 
-                         cx="100" cy="100" r="90" fill="none" stroke="url(#gradientRingCold)" 
-                         strokeWidth="12" strokeLinecap="round" 
-                         strokeDasharray="565.48" 
-                         strokeDashoffset={565.48 - (565.48 * topResult.pct) / 100} 
-                         className="transition-all duration-1500 ease-out" 
-                      />
-                      <defs>
-                        <linearGradient id="gradientRingCold" x1="0%" y1="0%" x2="100%" y2="100%">
-                           <stop offset="0%" stopColor="#0ea5e9" />
-                           <stop offset="100%" stopColor="#3b82f6" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                    <div className="text-center relative z-10 flex flex-col items-center">
-                      <span className="text-4xl md:text-5xl font-black text-slate-800">{topResult.pct}<span className="text-2xl text-blue-500">%</span></span>
-                    </div>
-                 </div>
-                 <div className="bg-white shadow-sm border border-slate-200 px-4 py-1.5 rounded-full text-[10px] font-black uppercase text-blue-600 tracking-widest">
-                   Top Match
-                 </div>
+          <div className="relative z-10 flex flex-col md:flex-row items-center p-6 md:p-8 gap-8">
+
+            {/* Left Score Ring */}
+            <div className="shrink-0 flex flex-col items-center justify-center">
+              <div className="relative w-36 h-36 flex items-center justify-center mb-4">
+                <svg className="absolute inset-0 w-full h-full -rotate-90 drop-shadow-md" viewBox="0 0 200 200">
+                  <circle cx="100" cy="100" r="90" fill="none" stroke="#e0e7ff" strokeWidth="12" />
+                  <circle
+                    cx="100" cy="100" r="90" fill="none" stroke="url(#gradientRingCold)"
+                    strokeWidth="12" strokeLinecap="round"
+                    strokeDasharray="565.48"
+                    strokeDashoffset={565.48 - (565.48 * topResult.pct) / 100}
+                    className="transition-all duration-1500 ease-out"
+                  />
+                  <defs>
+                    <linearGradient id="gradientRingCold" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#0ea5e9" />
+                      <stop offset="100%" stopColor="#3b82f6" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div className="text-center relative z-10 flex flex-col items-center">
+                  <span className="text-4xl md:text-5xl font-black text-slate-800">{topResult.pct}<span className="text-2xl text-blue-500">%</span></span>
+                </div>
               </div>
-
-              {/* Right Content */}
-              <div className="flex-1 w-full text-center md:text-left">
-                 <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight mb-2 tracking-tight">
-                   {topResult.specialization_name}
-                 </h2>
-                 <p className="text-blue-600 font-bold mb-4 flex justify-center md:justify-start items-center gap-2">
-                   <GraduationCap className="w-5 h-5" /> {topResult.course_name}
-                 </p>
-                 
-                 <p className="mb-5 text-sm md:text-[15px] text-slate-600 font-medium leading-relaxed bg-white/40 p-3 rounded-xl border border-white/60">
-                   {topResult.brief}
-                 </p>
-
-                 {/* Compact Point Information instead of huge cards */}
-                 <ul className="space-y-2.5 text-left">
-                   <li className="flex items-center gap-4 bg-white/70 p-3 rounded-2xl border border-white shadow-sm hover:shadow-md transition-shadow">
-                      <div className="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-500 shrink-0 border border-emerald-100">
-                         <TrendingUp className="w-5 h-5" />
-                      </div>
-                      <div>
-                         <p className="text-[9px] uppercase font-black tracking-widest text-slate-400">Market Demand</p>
-                         <p className="text-sm font-extrabold text-slate-800">{topResult.demand}</p>
-                      </div>
-                   </li>
-                   
-                   <li className="flex items-center gap-4 bg-white/70 p-3 rounded-2xl border border-white shadow-sm hover:shadow-md transition-shadow">
-                      <div className="w-9 h-9 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-500 shrink-0 border border-indigo-100">
-                         <Briefcase className="w-5 h-5" />
-                      </div>
-                      <div>
-                         <p className="text-[9px] uppercase font-black tracking-widest text-slate-400">Expected Salary Base</p>
-                         <p className="text-sm font-extrabold text-slate-800">{topResult.salary}</p>
-                      </div>
-                   </li>
-
-                   <li className="flex items-center gap-4 bg-white/70 p-3 rounded-2xl border border-white shadow-sm hover:shadow-md transition-shadow">
-                      <div className="w-9 h-9 rounded-xl bg-cyan-50 flex items-center justify-center text-cyan-500 shrink-0 border border-cyan-100">
-                         <BrainCircuit className="w-5 h-5" />
-                      </div>
-                      <div className="flex-1">
-                         <p className="text-[9px] uppercase font-black tracking-widest text-slate-400 mb-0.5">Primary Alignment Traits</p>
-                         <p className="text-xs font-bold text-slate-600 leading-tight flex flex-wrap gap-x-2 gap-y-1">
-                           {topResult.psychometric_traits.slice(0, 4).map(t => (
-                             <span key={t} className="bg-slate-100/50 text-slate-700 px-1.5 py-0.5 rounded uppercase text-[10px] border border-slate-200">
-                               {t.replace(/_/g, ' ')}
-                             </span>
-                           ))}
-                         </p>
-                      </div>
-                   </li>
-                 </ul>
+              <div className="bg-white shadow-sm border border-slate-200 px-4 py-1.5 rounded-full text-[10px] font-black uppercase text-blue-600 tracking-widest">
+                Top Match
               </div>
-           </div>
-           
-           {/* Direct Action Bottom Bar */}
-           <div className="border-t border-blue-100 bg-white p-5 shrink-0 flex flex-col sm:flex-row items-center justify-between gap-4">
-               <div className="text-center sm:text-left">
-                  <p className="text-sm font-extrabold text-slate-800">Clear path generated.</p>
-                  <p className="text-[11px] text-slate-500 font-medium">Explore top-tier courses perfectly aligned with this specialization.</p>
-               </div>
-               <Link
-                 href={`/college-directory?course=${topResult.course_id}&from=career-quiz`}
-                 className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg hover:shadow-blue-500/30 hover:scale-[1.02] transition-all whitespace-nowrap"
-               >
-                 Explore Colleges <ArrowRight className="w-4 h-4" />
-               </Link>
-           </div>
+            </div>
+
+            {/* Right Content */}
+            <div className="flex-1 w-full text-center md:text-left">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight mb-2 tracking-tight">
+                {topResult.specialization_name}
+              </h2>
+              <p className="text-blue-600 font-bold mb-4 flex justify-center md:justify-start items-center gap-2">
+                <GraduationCap className="w-5 h-5" /> {topResult.course_name}
+              </p>
+
+              <p className="mb-5 text-sm md:text-[15px] text-slate-600 font-medium leading-relaxed bg-white/40 p-3 rounded-xl border border-white/60">
+                {topResult.brief}
+              </p>
+
+              {/* Compact Point Information instead of huge cards */}
+              <ul className="space-y-2.5 text-left">
+                <li className="flex items-center gap-4 bg-white/70 p-3 rounded-2xl border border-white shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-500 shrink-0 border border-emerald-100">
+                    <TrendingUp className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-[9px] uppercase font-black tracking-widest text-slate-400">Market Demand</p>
+                    <p className="text-sm font-extrabold text-slate-800">{topResult.demand}</p>
+                  </div>
+                </li>
+
+                <li className="flex items-center gap-4 bg-white/70 p-3 rounded-2xl border border-white shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-9 h-9 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-500 shrink-0 border border-indigo-100">
+                    <Briefcase className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-[9px] uppercase font-black tracking-widest text-slate-400">Expected Salary Base</p>
+                    <p className="text-sm font-extrabold text-slate-800">{topResult.salary}</p>
+                  </div>
+                </li>
+
+                <li className="flex items-center gap-4 bg-white/70 p-3 rounded-2xl border border-white shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-9 h-9 rounded-xl bg-cyan-50 flex items-center justify-center text-cyan-500 shrink-0 border border-cyan-100">
+                    <BrainCircuit className="w-5 h-5" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-[9px] uppercase font-black tracking-widest text-slate-400 mb-0.5">Primary Alignment Traits</p>
+                    <p className="text-xs font-bold text-slate-600 leading-tight flex flex-wrap gap-x-2 gap-y-1">
+                      {topResult.psychometric_traits.slice(0, 4).map(t => (
+                        <span key={t} className="bg-slate-100/50 text-slate-700 px-1.5 py-0.5 rounded uppercase text-[10px] border border-slate-200">
+                          {t.replace(/_/g, ' ')}
+                        </span>
+                      ))}
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Direct Action Bottom Bar */}
+          <div className="border-t border-blue-100 bg-white p-5 shrink-0 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="text-center sm:text-left">
+              <p className="text-sm font-extrabold text-slate-800">Clear path generated.</p>
+              <p className="text-[11px] text-slate-500 font-medium">Explore top-tier courses perfectly aligned with this specialization.</p>
+            </div>
+            <Link
+              href={`/college-directory?course=${topResult.course_id}&from=career-quiz`}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg hover:shadow-blue-500/30 hover:scale-[1.02] transition-all whitespace-nowrap"
+            >
+              Explore Colleges <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
 
         {/* ALTERNATIVES COMPACT LIST */}
         <div className="mb-6 px-1">
-           <h3 className="text-xs font-extrabold text-slate-600 uppercase tracking-widest mb-3 flex items-center gap-2">
-             <Activity className="w-4 h-4 text-slate-400" /> Secondary Viable Trajectories
-           </h3>
-           <div className="grid md:grid-cols-3 gap-3">
-             {results.slice(1, 4).map((result, i) => {
-               const isExpanded = expandedSecondary.has(result.specialization_id);
-               return (
+          <h3 className="text-xs font-extrabold text-slate-600 uppercase tracking-widest mb-3 flex items-center gap-2">
+            <Activity className="w-4 h-4 text-slate-400" /> Secondary Viable Trajectories
+          </h3>
+          <div className="grid md:grid-cols-3 gap-3">
+            {results.slice(1, 4).map((result, i) => {
+              const isExpanded = expandedSecondary.has(result.specialization_id);
+              return (
                 <div key={result.specialization_id} className="bg-white rounded-2xl border border-slate-200 p-4 group hover:border-blue-300 hover:bg-blue-50/30 transition-colors shadow-sm">
-                   <div className="flex items-center justify-between">
-                     <div className="flex items-center gap-4 flex-1">
-                       <div className="relative w-12 h-12 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 overflow-hidden">
-                          <div className="absolute inset-0 bg-blue-100/50 scale-0 group-hover:scale-100 transition-transform origin-center rounded-full" />
-                          <span className="text-sm font-black text-slate-800 relative z-10">{result.pct}%</span>
-                       </div>
-                       <div className="flex-1">
-                          <h4 className="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors leading-tight mb-0.5">
-                            {result.specialization_name}
-                          </h4>
-                          <p className="text-[10px] font-semibold text-slate-500">
-                            {result.course_name}
-                          </p>
-                       </div>
-                     </div>
-                     <button
-                       onClick={() => {
-                         const newExpanded = new Set(expandedSecondary);
-                         if (isExpanded) newExpanded.delete(result.specialization_id);
-                         else newExpanded.add(result.specialization_id);
-                         setExpandedSecondary(newExpanded);
-                       }}
-                       className="w-6 h-6 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors"
-                     >
-                       <ChevronDown className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
-                     </button>
-                   </div>
-                   {isExpanded && (
-                     <div className="mt-3 pt-3 border-t border-slate-100 space-y-3">
-                       <div>
-                         <p className="text-xs text-slate-600 mb-2">{result.brief}</p>
-                         <div className="flex flex-wrap gap-1">
-                           {result.career_paths.slice(0, 3).map(path => (
-                             <span key={path} className="text-[9px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">
-                               {path}
-                             </span>
-                           ))}
-                         </div>
-                       </div>
-                       <Link
-                         href={`/college-directory?course=${result.course_id}&from=career-quiz`}
-                         className="inline-flex w-full items-center justify-center gap-1.5 bg-gradient-to-r from-blue-400 to-indigo-400 text-white font-bold text-xs px-3 py-2 rounded-lg hover:scale-[1.02] transition-transform active:scale-95 shadow-sm"
-                       >
-                         Explore Colleges <ArrowRight className="w-3 h-3" />
-                       </Link>
-                     </div>
-                   )}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4 flex-1">
+                      <div className="relative w-12 h-12 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 overflow-hidden">
+                        <div className="absolute inset-0 bg-blue-100/50 scale-0 group-hover:scale-100 transition-transform origin-center rounded-full" />
+                        <span className="text-sm font-black text-slate-800 relative z-10">{result.pct}%</span>
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors leading-tight mb-0.5">
+                          {result.specialization_name}
+                        </h4>
+                        <p className="text-[10px] font-semibold text-slate-500">
+                          {result.course_name}
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => {
+                        const newExpanded = new Set(expandedSecondary);
+                        if (isExpanded) newExpanded.delete(result.specialization_id);
+                        else newExpanded.add(result.specialization_id);
+                        setExpandedSecondary(newExpanded);
+                      }}
+                      className="w-6 h-6 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors"
+                    >
+                      <ChevronDown className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                    </button>
+                  </div>
+                  {isExpanded && (
+                    <div className="mt-3 pt-3 border-t border-slate-100 space-y-3">
+                      <div>
+                        <p className="text-xs text-slate-600 mb-2">{result.brief}</p>
+                        <div className="flex flex-wrap gap-1">
+                          {result.career_paths.slice(0, 3).map(path => (
+                            <span key={path} className="text-[9px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded">
+                              {path}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <Link
+                        href={`/secondary-trajectories`}
+                        onClick={() => {
+                          localStorage.setItem('secondaryTrajectories', JSON.stringify(results.slice(1, 4)));
+                        }}
+                        className="inline-flex w-full items-center justify-center gap-1.5 bg-gradient-to-r from-blue-400 to-indigo-400 text-white font-bold text-xs px-3 py-2 rounded-lg hover:scale-[1.02] transition-transform active:scale-95 shadow-sm"
+                      >
+                        Explore Colleges <ArrowRight className="w-3 h-3" />
+                      </Link>
+                    </div>
+                  )}
                 </div>
-               );
-             })}
-           </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* BOTTOM UTILITY ROW */}
         <div className="flex justify-center mt-6">
-           <button
-             onClick={restart}
-             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white border border-slate-200 text-slate-600 text-[11px] uppercase tracking-wider font-bold hover:bg-slate-50 hover:text-slate-900 hover:shadow-sm transition-all"
-           >
-             <RotateCcw className="w-3.5 h-3.5 text-slate-400" /> Re-execute Assessment
-           </button>
+          <button
+            onClick={restart}
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white border border-slate-200 text-slate-600 text-[11px] uppercase tracking-wider font-bold hover:bg-slate-50 hover:text-slate-900 hover:shadow-sm transition-all"
+          >
+            <RotateCcw className="w-3.5 h-3.5 text-slate-400" /> Re-execute Assessment
+          </button>
         </div>
 
       </div>
